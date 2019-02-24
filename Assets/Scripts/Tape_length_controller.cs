@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Tape_length_controller : MonoBehaviour {
 
-    public Transform[] points;
+    public Transform start_point;
+    public Transform end_point;
     public LineRenderer lineRederer;
 
 	// Use this for initialization
 	void Start () {
-        lineRederer.positionCount = points.Length;
-	}
+        lineRederer.positionCount = 2;      // start and end
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		for(int i = 0;i < points.Length; ++i)
-        {
-            lineRederer.SetPosition(i, points[i].position);
-        }
-	}
+        lineRederer.SetPosition(0, start_point.position);
+        lineRederer.SetPosition(1, end_point.position);
+    }
 }
