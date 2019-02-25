@@ -290,6 +290,16 @@ Transform:
   m_Father: {fileID: 37062613}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &276536700 stripped
+Rigidbody:
+  m_PrefabParentObject: {fileID: 54399691308479722, guid: 873dee6063713bf43854d72ccfd5dcc7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1362726813}
+--- !u!135 &276536701 stripped
+SphereCollider:
+  m_PrefabParentObject: {fileID: 135009659367268416, guid: 873dee6063713bf43854d72ccfd5dcc7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1362726813}
 --- !u!1 &311240829
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &311240830
 Transform:
   m_ObjectHideFlags: 0
@@ -654,7 +664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 3
+  useButton: 7
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -744,7 +754,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 492548534}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
   m_Name: 
@@ -798,11 +808,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabButton: 7
+  grabButton: 0
   grabPrecognition: 0
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
-  controllerAttachPoint: {fileID: 0}
+  controllerAttachPoint: {fileID: 276536700}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
 --- !u!1001 &529108786
@@ -1003,6 +1013,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1803022543}
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+--- !u!135 &899303452 stripped
+SphereCollider:
+  m_PrefabParentObject: {fileID: 135256842424510526, guid: 873dee6063713bf43854d72ccfd5dcc7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1362726813}
 --- !u!1 &901914111 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
@@ -1291,7 +1306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1332724552
 Transform:
   m_ObjectHideFlags: 0
@@ -1509,6 +1524,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114799320550860676, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: ignoredColliders.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4179740503470202, guid: 873dee6063713bf43854d72ccfd5dcc7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1540,6 +1560,46 @@ Prefab:
     - target: {fileID: 4179740503470202, guid: 873dee6063713bf43854d72ccfd5dcc7, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114799320550860676, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: pointerActivatesUseAction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114799320550860676, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: useOnlyIfGrabbed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114799320550860676, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: ignoredColliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 276536701}
+    - target: {fileID: 114799320550860676, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: ignoredColliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 899303452}
+    - target: {fileID: 114706336429121286, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120487044048728252, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 873dee6063713bf43854d72ccfd5dcc7, type: 2}
@@ -2010,8 +2070,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToGrab: {fileID: 1135773967}
   objectIsPrefab: 0
-  cloneGrabbedObject: 1
-  alwaysCloneOnEnable: 1
+  cloneGrabbedObject: 0
+  alwaysCloneOnEnable: 0
   attemptSecondaryGrab: 0
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}

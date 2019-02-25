@@ -6,6 +6,12 @@ using VRTK;
 public class Tape_model : VRTK_InteractableObject {
 
     private VRTK_ControllerReference controllerReference;
+    public LineRenderer lineRederer;
+    public Transform start_point;
+    public Transform end_point;
+
+    //GameObject rightHand = VRTK_DeviceFinder.GetControllerRightHand(true);
+    //GameObject leftHand = VRTK_DeviceFinder.GetControllerLeftHand(true);
 
     public override void Grabbed(VRTK_InteractGrab grabbingObject)
     {
@@ -24,5 +30,14 @@ public class Tape_model : VRTK_InteractableObject {
         base.OnEnable();
         controllerReference = null;
         interactableRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+    }
+
+    public override void OnInteractableObjectUnused(InteractableObjectEventArgs e)
+    {
+        base.OnInteractableObjectUnused(e);
+        Debug.Log("used");
+        
+        
+        
     }
 }

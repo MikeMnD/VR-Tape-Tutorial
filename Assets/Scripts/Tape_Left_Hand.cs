@@ -26,10 +26,4 @@ public class Tape_Left_Hand : VRTK_InteractableObject
         controllerReference = null;
         interactableRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
-
-    public override void OnInteractableObjectUsed(InteractableObjectEventArgs e)
-    {
-        base.OnInteractableObjectUsed(e);
-        Debug.Log(this.name);
-    }
 }
