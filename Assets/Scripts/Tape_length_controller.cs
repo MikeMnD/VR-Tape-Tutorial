@@ -14,7 +14,6 @@ public class Tape_length_controller : MonoBehaviour {
         lineRederer.positionCount = 2;      // start and end
     }
     
-
     // Update is called once per frame
     void Update () {
         lineRederer.SetPosition(0, start_point.position);

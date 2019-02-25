@@ -290,11 +290,6 @@ Transform:
   m_Father: {fileID: 37062613}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &276536700 stripped
-Rigidbody:
-  m_PrefabParentObject: {fileID: 54399691308479722, guid: 873dee6063713bf43854d72ccfd5dcc7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1362726813}
 --- !u!135 &276536701 stripped
 SphereCollider:
   m_PrefabParentObject: {fileID: 135009659367268416, guid: 873dee6063713bf43854d72ccfd5dcc7,
@@ -619,7 +614,6 @@ GameObject:
   - component: {fileID: 492548537}
   - component: {fileID: 492548536}
   - component: {fileID: 492548542}
-  - component: {fileID: 492548541}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -664,7 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 7
+  useButton: 0
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -777,26 +771,6 @@ MonoBehaviour:
   interactUse: {fileID: 0}
   customOrigin: {fileID: 0}
   controller: {fileID: 0}
---- !u!114 &492548541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 492548534}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58cdac96da703d7488a11cc3bde08cbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToGrab: {fileID: 894429202}
-  objectIsPrefab: 1
-  cloneGrabbedObject: 0
-  alwaysCloneOnEnable: 0
-  attemptSecondaryGrab: 0
-  interactTouch: {fileID: 0}
-  interactGrab: {fileID: 0}
-  secondaryInteractTouch: {fileID: 0}
-  secondaryInteractGrab: {fileID: 0}
 --- !u!114 &492548542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,11 +782,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabButton: 0
+  grabButton: 7
   grabPrecognition: 0
   throwMultiplier: 1
   createRigidBodyWhenNotTouching: 0
-  controllerAttachPoint: {fileID: 276536700}
+  controllerAttachPoint: {fileID: 0}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
 --- !u!1001 &529108786
@@ -1007,12 +981,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 749055059}
---- !u!114 &894429202 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114069187300895792, guid: b5a0c177bd2892e43bc29a19faa617f2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1803022543}
-  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
 --- !u!135 &899303452 stripped
 SphereCollider:
   m_PrefabParentObject: {fileID: 135256842424510526, guid: 873dee6063713bf43854d72ccfd5dcc7,
@@ -1594,11 +1562,26 @@ Prefab:
     - target: {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7,
         type: 2}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: 0.12745094
       objectReference: {fileID: 0}
     - target: {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7,
         type: 2}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120487044048728252, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.13628387
+      objectReference: {fileID: 0}
+    - target: {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2161,6 +2144,76 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5a0c177bd2892e43bc29a19faa617f2, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1836134536 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1201244003675926, guid: 873dee6063713bf43854d72ccfd5dcc7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1362726813}
+--- !u!4 &1836134537 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4415199939094794, guid: 873dee6063713bf43854d72ccfd5dcc7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1362726813}
+--- !u!114 &1836134538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836134536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1836134539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836134536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec2ac476f2fc9a45a4e69712580a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 0
+  rightSnapHandle: {fileID: 1836134537}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+--- !u!114 &1836134540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836134536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 7
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1836134539}
+  secondaryGrabActionScript: {fileID: 1836134538}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
 --- !u!4 &1924313517 stripped
 Transform:
   m_PrefabParentObject: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
