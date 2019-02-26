@@ -221,6 +221,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &199752784 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 146900, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+  m_PrefabInternal: {fileID: 85579796}
 --- !u!1 &260404868
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,12 +253,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 0}
-  actualHeadset: {fileID: 0}
-  actualLeftController: {fileID: 0}
-  actualRightController: {fileID: 0}
-  modelAliasLeftController: {fileID: 0}
-  modelAliasRightController: {fileID: 0}
+  actualBoundaries: {fileID: 199752784}
+  actualHeadset: {fileID: 344920880}
+  actualLeftController: {fileID: 1156432966}
+  actualRightController: {fileID: 1286517374}
+  modelAliasLeftController: {fileID: 550987520}
+  modelAliasRightController: {fileID: 459965950}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
@@ -396,6 +400,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 311240829}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &344920880 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 189822, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+  m_PrefabInternal: {fileID: 85579796}
 --- !u!1 &362038372
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +608,10 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &459965950 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 192944, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+  m_PrefabInternal: {fileID: 85579796}
 --- !u!1 &492548534
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +843,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 099bfa90227eaf14c8ce3ce1a65f9824, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &550987520 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 147176, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+  m_PrefabInternal: {fileID: 85579796}
 --- !u!4 &591689897 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400086, guid: 9fbd4cfd43766cc4cbcb915ceafe52a9, type: 3}
@@ -1200,6 +1216,10 @@ MonoBehaviour:
   targetListPolicy: {fileID: 0}
   navMeshData: {fileID: 0}
   navMeshLimitDistance: 0
+--- !u!1 &1156432966 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 124034, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+  m_PrefabInternal: {fileID: 85579796}
 --- !u!1 &1203679987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1273,10 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1286517374 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 159396, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+  m_PrefabInternal: {fileID: 85579796}
 --- !u!1 &1332724551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1596,7 @@ Prefab:
     - target: {fileID: 120487044048728252, guid: 873dee6063713bf43854d72ccfd5dcc7,
         type: 2}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.13628387
+      value: 0.10295105
       objectReference: {fileID: 0}
     - target: {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7,
         type: 2}
@@ -1593,6 +1617,25 @@ Prefab:
         type: 2}
       propertyPath: allowedUseControllers
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 120487044048728252, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120487044048728252, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573884323020666, guid: 873dee6063713bf43854d72ccfd5dcc7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 114799320550860676, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: stayGrabbedOnTeleport
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7, type: 2}
