@@ -6,12 +6,17 @@ using VRTK;
 public class Tape_model : VRTK_InteractableObject {
 
     private VRTK_ControllerReference controllerReference;
-    //public LineRenderer lineRederer;
-    //public Transform start_point;
-    //public Transform end_point;
+    private LineRenderer duplicate;
 
-    //GameObject rightHand = VRTK_DeviceFinder.GetControllerRightHand(true);
-    //GameObject leftHand = VRTK_DeviceFinder.GetControllerLeftHand(true);
+    private void SetNewLineRenderer(float length)
+    {
+        // get both controllers' positions
+
+        // force to adjust left controller's position
+
+        // set up the duplicate of the line renderer
+    }
+
 
     public override void Grabbed(VRTK_InteractGrab grabbingObject)
     {
@@ -30,44 +35,27 @@ public class Tape_model : VRTK_InteractableObject {
         base.OnEnable();
         controllerReference = null;
         interactableRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-       
-
-        //lineRederer.positionCount = 2;      // start and end
     }
 
-
-    /*
-    public override void OnInteractableObjectUnused(InteractableObjectEventArgs e)
+    public override void StartUsing(VRTK_InteractUse currentUsingObject = null)
     {
-        base.OnInteractableObjectUnused(e);
-        Debug.Log("used");
-        //GameObject leftHand = VRTK_DeviceFinder.GetControllerLeftHand(true);
-        //GameObject rightHand = VRTK_DeviceFinder.GetControllerRightHand(true);
+        base.StartUsing(currentUsingObject);
+        Debug.Log("start using");
 
+        // get the line renderer length
+        LineRenderer cut_tape = this.gameObject.GetComponentInChildren<LineRenderer>();
+        Vector3[] points = new Vector3[2];
+        cut_tape.GetPositions(points);
 
+        // get the length of the tape
+        float dis = Vector3.Distance(points[0], points[1]);
+        Debug.Log("tape length = " + dis);
 
-        lineRederer.SetPosition(0, start_point.position);
-        lineRederer.SetPosition(1, end_point.position);
-    }
-
-
-    public override void StopUsing(VRTK_InteractUse previousUsingObject = null, bool resetUsingObjectState = true)
-    {
-        base.StopUsing(previousUsingObject, resetUsingObjectState);
+        // drop the tape in hands
+        base.ForceStopInteracting();
+        GameObject dropped = GameObject.Find("tape_model");
+        Destroy(dropped);
         
-        //lineRederer.SetPosition(0, start_point.position);
-        //lineRederer.SetPosition(1, end_point.position);
     }
-
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-        if(IsUsing())
-        {
-            lineRederer.SetPosition(0, start_point.position);
-            lineRederer.SetPosition(1, end_point.position);
-        }
-    }
-    */
 
 }

@@ -1584,7 +1584,18 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114799320550860676, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: useOverrideButton
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114799320550860676, guid: 873dee6063713bf43854d72ccfd5dcc7,
+        type: 2}
+      propertyPath: allowedUseControllers
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 120469076791951910, guid: 873dee6063713bf43854d72ccfd5dcc7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 873dee6063713bf43854d72ccfd5dcc7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1368996896
