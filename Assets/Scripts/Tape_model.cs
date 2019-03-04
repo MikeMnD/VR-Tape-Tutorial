@@ -17,7 +17,6 @@ public class Tape_model : VRTK_InteractableObject {
         // set up the duplicate of the line renderer
     }
 
-
     public override void Grabbed(VRTK_InteractGrab grabbingObject)
     {
         base.Grabbed(grabbingObject);
