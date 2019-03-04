@@ -16,7 +16,12 @@ public class Tape_length_controller : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
+
+        Debug.Log(end_point.rotation);
+        start_point.transform.localRotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
+
         lineRederer.SetPosition(0, start_point.position);
         lineRederer.SetPosition(1, end_point.position);
+
     }
 }
