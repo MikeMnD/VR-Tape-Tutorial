@@ -9,6 +9,41 @@ public class Tape_length_controller : MonoBehaviour {
     public Transform end_point;
     public LineRenderer lineRederer;
 
+    private bool show_scissor = false;
+    private float target_tape_length = 0.1f;
+
+    public float GetTarget_tape_length()
+    {
+        return target_tape_length;
+    }
+
+    private void BuildTapeSection(float length)
+    {
+        // get both controllers' positions
+
+        // force to adjust left controller's position
+
+        // set up the new tape section
+    }
+
+    
+    public float GetCurrentLength()
+    {
+
+        /*
+        // get the line renderer length
+        LineRenderer cut_tape = this.gameObject.GetComponentInChildren<LineRenderer>();
+        Vector3[] points = new Vector3[2];
+        cut_tape.GetPositions(points);
+
+        // get the length of the tape
+        return Vector3.Distance(points[0], points[1]);
+        */
+
+        return Vector3.Distance(start_point.position, end_point.position); 
+
+    }
+
     // Use this for initialization
     void Start () {
         lineRederer.positionCount = 2;      // start and end
@@ -19,7 +54,6 @@ public class Tape_length_controller : MonoBehaviour {
 
         // let the grabbed point to face users' eyes
         start_point.transform.localRotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
-        Debug.Log("start point = " + start_point.position);
 
         VRTK_InteractableObject grabbed_script = GetComponent<VRTK_InteractableObject>();
         if(grabbed_script.IsGrabbed())
@@ -31,12 +65,24 @@ public class Tape_length_controller : MonoBehaviour {
             if(angle > 30.0f)
             {
                 // drop the grabbed point
-                Debug.Log(angle);
                 grabbed_script.ForceStopInteracting();
                 return;
             }
+        }
+
+        float dis = GetCurrentLength();
+        // Debug.Log("dis: " + dis);
+        if (dis >= target_tape_length && !show_scissor)
+        {
+            // create the scissors
+            show_scissor = true;
+            GameObject scissor = (GameObject)Resources.Load("scissors");
+            Instantiate(scissor);
+            
+            // set scissor positions
 
         }
+
 
         lineRederer.SetPosition(0, start_point.position);
         lineRederer.SetPosition(1, end_point.position);
