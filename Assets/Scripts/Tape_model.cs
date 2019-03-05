@@ -48,13 +48,13 @@ public class Tape_model : VRTK_InteractableObject {
 
         // get the length of the tape
         float dis = Vector3.Distance(points[0], points[1]);
-        Debug.Log("tape length = " + dis);
+        //Debug.Log("tape length = " + dis);
 
         // drop the tape in hands
         base.ForceStopInteracting();
         GameObject dropped = GameObject.Find("tape_model");
         Destroy(dropped);
-        
+
     }
 
 }
