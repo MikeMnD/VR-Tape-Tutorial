@@ -198,10 +198,10 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6563640ca0186fe4d9457619abddc814, type: 2}
-  - {fileID: 2100000, guid: fc7d9b5271f60fd40b27a6593a57be3d, type: 2}
-  - {fileID: 2100000, guid: 9e21d71caa39ccd4ab2ae5a2fc7560e1, type: 2}
-  - {fileID: 2100006, guid: 3a5ee68137451ad4aad49a38a5ecfd12, type: 3}
-  - {fileID: 2100000, guid: 335716b8c87d74b4680efc58ab62149a, type: 2}
+  - {fileID: 2100000, guid: 6563640ca0186fe4d9457619abddc814, type: 2}
+  - {fileID: 2100000, guid: 6563640ca0186fe4d9457619abddc814, type: 2}
+  - {fileID: 2100000, guid: 6563640ca0186fe4d9457619abddc814, type: 2}
+  - {fileID: 2100000, guid: 6563640ca0186fe4d9457619abddc814, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -461,9 +461,6 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
-  lineRederer: {fileID: 120469076791951910}
-  start_point: {fileID: 4415199939094794}
-  end_point: {fileID: 4573884323020666}
 --- !u!120 &120469076791951910
 LineRenderer:
   m_ObjectHideFlags: 1
