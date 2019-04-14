@@ -13,7 +13,7 @@
             Debug.Log("go to next scene");
             /* change scene */
             //SceneManager.LoadScene(this.name);
-            SceneManager.LoadScene("test");
+            SceneManager.LoadScene("User");
             StopUsing();
         }
 
