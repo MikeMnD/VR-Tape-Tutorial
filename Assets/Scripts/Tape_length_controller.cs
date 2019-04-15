@@ -8,15 +8,12 @@ public class Tape_length_controller : MonoBehaviour {
     public Transform start_point;
     public Transform end_point;
     public LineRenderer lineRederer;
+    private GameObject scissor;
+    private GameObject tape_roll;
 
     private bool show_scissor = false;
-    private float target_tape_length = 0.1f;
-
-    public float GetTarget_tape_length()
-    {
-        return target_tape_length;
-    }
-
+    private double target_tape_length = StaticData.getTargetTapeLength();
+  
     private void BuildTapeSection(float length)
     {
         // get both controllers' positions
@@ -47,6 +44,8 @@ public class Tape_length_controller : MonoBehaviour {
     // Use this for initialization
     void Start () {
         lineRederer.positionCount = 2;      // start and end
+
+        Debug.Log(target_tape_length);
     }
     
     // Update is called once per frame
@@ -74,7 +73,7 @@ public class Tape_length_controller : MonoBehaviour {
         }
 
         float dis = GetCurrentLength();
-        // Debug.Log("dis: " + dis);
+        //Debug.Log("dis: " + dis);
 
         if (dis >= target_tape_length)
         {
@@ -83,17 +82,20 @@ public class Tape_length_controller : MonoBehaviour {
             {
                 // create the scissors
                 show_scissor = true;
-                GameObject scissor = (GameObject)Resources.Load("scissors");
+                scissor = (GameObject)Resources.Load("scissors");
 
-                GameObject show_pos = GameObject.Find("connect");
-                Instantiate(scissor, show_pos.transform.position + new Vector3(0.01f, 0.0f, 0.1f), Quaternion.Euler(0.0f, 90.0f, 0.0f));
-                Debug.Log("scissor show");
-                
+                tape_roll= GameObject.Find("connect");
+                scissor = Instantiate(scissor) as GameObject;
+
+                scissor.transform.SetParent(tape_roll.transform);
+                scissor.transform.localPosition = new Vector3( 0.0f, 0.0f, 1.0f);
+                scissor.transform.localRotation = Quaternion.Euler(0.0f, -90.0f, -90.0f);
+
             }
-
 
         }
         lineRederer.SetPosition(0, start_point.position);
         lineRederer.SetPosition(1, end_point.position);
+
     }
 }

@@ -10,6 +10,7 @@
         public override void StartUsing(VRTK_InteractUse currentUsingObject = null)
         {
             base.StartUsing(currentUsingObject);
+            StaticData.setTargetTapeLength(this.name.ToLower());
             Debug.Log("go to next scene");
             /* change scene */
             //SceneManager.LoadScene(this.name);
