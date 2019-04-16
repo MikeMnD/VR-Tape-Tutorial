@@ -10,6 +10,7 @@ public class Tape_length_controller : MonoBehaviour {
     public LineRenderer lineRederer;
     private GameObject scissor;
     private GameObject tape_roll;
+    private Vector3 init_pos;
 
     private bool show_scissor = false;
     private double target_tape_length = StaticData.getTargetTapeLength();
@@ -23,22 +24,9 @@ public class Tape_length_controller : MonoBehaviour {
         // set up the new tape section
     }
 
-    
-    public float GetCurrentLength()
+    public float getCurrentLength()
     {
-
-        /*
-        // get the line renderer length
-        LineRenderer cut_tape = this.gameObject.GetComponentInChildren<LineRenderer>();
-        Vector3[] points = new Vector3[2];
-        cut_tape.GetPositions(points);
-
-        // get the length of the tape
-        return Vector3.Distance(points[0], points[1]);
-        */
-
         return Vector3.Distance(start_point.position, end_point.position); 
-
     }
 
     // Use this for initialization
@@ -46,10 +34,30 @@ public class Tape_length_controller : MonoBehaviour {
         lineRederer.positionCount = 2;      // start and end
 
         Debug.Log(target_tape_length);
+            
+        GameObject grabbed = GameObject.Find("grabbedBtn");
+        init_pos = grabbed.transform.localPosition;
+
+
+        // set up scissor
+        scissor = (GameObject)Resources.Load("scissors");
+
+        tape_roll = GameObject.Find("tapeRoll");
+
+        scissor = Instantiate(scissor) as GameObject;
+
+        // set up the local position
+        scissor.transform.SetParent(tape_roll.transform);
+        scissor.transform.localPosition = new Vector3(-2.0f, 4.0f, 0.0f);
+        scissor.transform.localRotation = Quaternion.Euler(0.0f, -90.0f, -90.0f);
+
+        scissor.SetActive(false);
     }
     
     // Update is called once per frame
     void Update () {
+
+        Debug.Log(tape_roll.transform.localPosition);
 
         // let the grabbed point be vertical to tape
         start_point.transform.localRotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
@@ -61,41 +69,26 @@ public class Tape_length_controller : MonoBehaviour {
             Vector3 current_vector = start_point.position - end_point.position;
             float angle = Vector3.Angle(vector_x, current_vector);
 
-            /*
             if(angle > 30.0f)
             {
-                // drop the grabbed point
-                grabbed_script.ForceStopInteracting();
-                start_point.localPosition = end_point.localPosition + vector_x;
-                return;
+                /*
+                Debug.Log("angle is out of range");
+                tape.ForceStopInteracting();
+
+                GameObject grabbed = GameObject.Find("grabbedBtn");
+                grabbed.transform.position = transform.TransformPoint(init_pos);
+
+                */
             }
-            */
         }
 
-        float dis = GetCurrentLength();
-        //Debug.Log("dis: " + dis);
+        float curLength = getCurrentLength();
+        if (curLength >= target_tape_length)
+            scissor.SetActive(true);
+        else
+            scissor.SetActive(false);
 
-        if (dis >= target_tape_length)
-        {
-
-            if (!show_scissor)
-            {
-                // create the scissors
-                show_scissor = true;
-                scissor = (GameObject)Resources.Load("scissors");
-
-                tape_roll= GameObject.Find("connect");
-                scissor = Instantiate(scissor) as GameObject;
-
-                scissor.transform.SetParent(tape_roll.transform);
-                scissor.transform.localPosition = new Vector3( 0.0f, 0.0f, 1.0f);
-                scissor.transform.localRotation = Quaternion.Euler(0.0f, -90.0f, -90.0f);
-
-            }
-
-        }
         lineRederer.SetPosition(0, start_point.position);
         lineRederer.SetPosition(1, end_point.position);
-
     }
 }

@@ -1890,7 +1890,7 @@ GameObject:
   - component: {fileID: 899303452}
   - component: {fileID: 1507152130}
   m_Layer: 0
-  m_Name: connect
+  m_Name: tapeRoll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2526,7 +2526,7 @@ GameObject:
   - component: {fileID: 1836134539}
   - component: {fileID: 1836134540}
   m_Layer: 0
-  m_Name: origin
+  m_Name: grabbedBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
