@@ -57,8 +57,6 @@ public class Tape_length_controller : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        Debug.Log(tape_roll.transform.localPosition);
-
         // let the grabbed point be vertical to tape
         start_point.transform.localRotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
 
@@ -68,17 +66,16 @@ public class Tape_length_controller : MonoBehaviour {
             Vector3 vector_x = new Vector3(-0.01f, 0.0f, 0.0f);
             Vector3 current_vector = start_point.position - end_point.position;
             float angle = Vector3.Angle(vector_x, current_vector);
-
             if(angle > 30.0f)
-            {
-                /*
+            {  
                 Debug.Log("angle is out of range");
                 tape.ForceStopInteracting();
 
                 GameObject grabbed = GameObject.Find("grabbedBtn");
-                grabbed.transform.position = transform.TransformPoint(init_pos);
+                grabbed.transform.SetParent(tape_roll.transform);
+                grabbed.transform.localPosition = new Vector3(-1.0f/0.2f, 0.0f, 0.0f); 
+                // x/0.2 because of the scale !!
 
-                */
             }
         }
 
