@@ -29,17 +29,21 @@ public class Tape_model : VRTK_InteractableObject {
     public override void StartUsing(VRTK_InteractUse currentUsingObject = null)
     {
         base.StartUsing(currentUsingObject);
-        Debug.Log("start using");
 
-        // drop the tape in hands
-        base.ForceStopInteracting();
-        GameObject dropped = GameObject.Find("tape_model");
-        Debug.Log(dropped.transform.lossyScale);
 
-        // tell the system that the scissor is cut
-        StaticData.setIsCut(true);
+        if (StaticData.getShowScissor())
+        {
+            Debug.Log("start using");
+            // drop the tape in hands
+            base.ForceStopInteracting();
+            GameObject dropped = GameObject.Find("tape_model");
+            Debug.Log(dropped.transform.lossyScale);
 
-        Destroy(dropped);
+            // tell the system that the scissor is cut
+            StaticData.setIsCut(true);
+
+            Destroy(dropped);
+        }
 
     }
 

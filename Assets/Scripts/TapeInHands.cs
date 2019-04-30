@@ -13,8 +13,9 @@ public class TapeInHands : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (StaticData.getIsCut() && !setUp)
+        
+        // check if show scissor and not setup and cut
+        if (StaticData.getIsCut() && StaticData.getShowScissor() && !setUp)
         {
 
             // set up length
@@ -26,7 +27,7 @@ public class TapeInHands : MonoBehaviour {
             Renderer renderer = GetComponent<Renderer>();
             renderer.material = newMat;
 
-            // set up position BUG!
+            // set up position
             GameObject leftHand = VRTK_DeviceFinder.GetControllerLeftHand();
             transform.SetParent(leftHand.transform);
             transform.localPosition = new Vector3( 0.0f, 0.0f, 0.0f);

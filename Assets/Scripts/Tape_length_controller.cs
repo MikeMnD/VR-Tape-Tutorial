@@ -11,18 +11,7 @@ public class Tape_length_controller : MonoBehaviour {
     private GameObject scissor;
     private GameObject tape_roll;
     private Vector3 init_pos;
-
-    private bool show_scissor = false;
     private double target_tape_length = StaticData.getTargetTapeLength();
-  
-    private void BuildTapeSection(float length)
-    {
-        // get both controllers' positions
-
-        // force to adjust left controller's position
-
-        // set up the new tape section
-    }
 
     public float getCurrentLength()
     {
@@ -32,21 +21,17 @@ public class Tape_length_controller : MonoBehaviour {
     // Use this for initialization
     void Start () {
         lineRederer.positionCount = 2;      // start and end
-
         Debug.Log(target_tape_length);
             
         GameObject grabbed = GameObject.Find("grabbedBtn");
         init_pos = grabbed.transform.localPosition;
 
-
         // set up scissor
         scissor = (GameObject)Resources.Load("scissors");
-
-        tape_roll = GameObject.Find("tapeRoll");
-
         scissor = Instantiate(scissor) as GameObject;
 
         // set up the local position
+        tape_roll = GameObject.Find("tapeRoll");
         scissor.transform.SetParent(tape_roll.transform);
         scissor.transform.localPosition = new Vector3(-2.0f, 4.0f, 0.0f);
         scissor.transform.localRotation = Quaternion.Euler(0.0f, -90.0f, -90.0f);
@@ -81,9 +66,15 @@ public class Tape_length_controller : MonoBehaviour {
 
         float curLength = getCurrentLength();
         if (curLength >= target_tape_length)
+        {
             scissor.SetActive(true);
+            StaticData.setShowScissor(true);
+        }
         else
+        {
             scissor.SetActive(false);
+            StaticData.setShowScissor(false);
+        }
 
         lineRederer.SetPosition(0, start_point.position);
         lineRederer.SetPosition(1, end_point.position);
