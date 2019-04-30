@@ -11,6 +11,7 @@ public class StaticData : MonoBehaviour {
     // initial distance == 0.08 (simulator)
     private static double[] LengthArray = { 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.30 };
     private static double TargetTapeLength;
+    private static bool isCut = false;
     public static void setTargetTapeLength (string btn_name)
     {
         BodyPartNum parsed_enum = (BodyPartNum) System.Enum.Parse(typeof(BodyPartNum),  btn_name);
@@ -21,6 +22,16 @@ public class StaticData : MonoBehaviour {
     public static double getTargetTapeLength ()
     {
         return TargetTapeLength = 0.2;
+    }
+
+    public static void setIsCut (bool value)
+    {
+        isCut = value;
+    }
+
+    public static bool getIsCut()
+    {
+        return isCut;
     }
 
     private void Awake()

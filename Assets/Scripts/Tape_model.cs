@@ -34,6 +34,11 @@ public class Tape_model : VRTK_InteractableObject {
         // drop the tape in hands
         base.ForceStopInteracting();
         GameObject dropped = GameObject.Find("tape_model");
+        Debug.Log(dropped.transform.lossyScale);
+
+        // tell the system that the scissor is cut
+        StaticData.setIsCut(true);
+
         Destroy(dropped);
 
     }
