@@ -169,7 +169,7 @@ Transform:
   - {fileID: 362038374}
   - {fileID: 260404870}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &66850541 stripped
 GameObject:
@@ -1193,7 +1193,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695343170
 GameObject:
@@ -1626,7 +1626,7 @@ Transform:
   m_Children:
   - {fileID: 439348928}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1267321365
 GameObject:
@@ -1960,7 +1960,7 @@ Transform:
   m_LocalScale: {x: 0.04, y: 1, z: 0.003}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1267321370
 MonoBehaviour:
@@ -2639,7 +2639,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1546029146 stripped
 Transform:
@@ -2937,15 +2937,15 @@ GameObject:
   - component: {fileID: 1812551455}
   - component: {fileID: 1812551454}
   - component: {fileID: 1812551453}
-  - component: {fileID: 1812551450}
+  - component: {fileID: 1812551449}
   m_Layer: 0
   m_Name: cut_tape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1812551450
+  m_IsActive: 0
+--- !u!114 &1812551449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2953,11 +2953,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1812551448}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 402271f82ace6c641a130b175dbc1033, type: 3}
+  m_Script: {fileID: 11500000, guid: b1fbe9769acfeca44bec68ca6b37be3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPosition: {fileID: 1965502222}
-  rightPosition: {fileID: 0}
 --- !u!64 &1812551453
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2990,7 +2988,7 @@ Transform:
   m_LocalScale: {x: 0.04, y: 1, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1836134536
 GameObject:
@@ -3468,7 +3466,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121999947 stripped
 GameObject:

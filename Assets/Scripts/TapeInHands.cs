@@ -6,9 +6,12 @@ using VRTK;
 public class TapeInHands : MonoBehaviour {
     private bool setUp = false;
 
+    SkinnedMeshRenderer mesh;
+
     // Use this for initialization
     void Start () {
-
+        mesh = this.GetComponent<SkinnedMeshRenderer>();
+        mesh.enabled = false;
     }
 	
 	// Update is called once per frame
@@ -39,6 +42,8 @@ public class TapeInHands : MonoBehaviour {
             _cloth.gameObject.SetActive(true);
             _cloth.enabled = true;
 
+            // enable skin mesh renderer
+            mesh.enabled = true;
 
             setUp = true;
         }

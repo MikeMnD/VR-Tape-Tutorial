@@ -17,8 +17,14 @@ public class StaticData : MonoBehaviour {
     public static void setTargetTapeLength (string btn_name)
     {
         BodyPartNum parsed_enum = (BodyPartNum) System.Enum.Parse(typeof(BodyPartNum),  btn_name);
+        
+        // set up target tape length
         TargetTapeLength = LengthArray[(int) parsed_enum];
         Debug.Log(TargetTapeLength);
+
+        // set up target animation model
+        
+        
     }
 
     public static double getTargetTapeLength ()
