@@ -13,11 +13,13 @@ public class StaticData : MonoBehaviour {
     private static double TargetTapeLength;
     private static bool isCut = false;
     private static bool showScissor = false;
+    private static int targetNum;
 
     public static void setTargetTapeLength (string btn_name)
     {
         BodyPartNum parsed_enum = (BodyPartNum) System.Enum.Parse(typeof(BodyPartNum),  btn_name);
-        
+        targetNum = (int)parsed_enum;
+
         // set up target tape length
         TargetTapeLength = LengthArray[(int) parsed_enum];
         Debug.Log(TargetTapeLength);
@@ -25,6 +27,11 @@ public class StaticData : MonoBehaviour {
         // set up target animation model
         
         
+    }
+
+    public static int getTargetNum()
+    {
+        return targetNum;
     }
 
     public static double getTargetTapeLength ()

@@ -23,7 +23,7 @@ public class TapeInHands : MonoBehaviour {
 
             // set up length
             double length = StaticData.getTargetTapeLength();
-            transform.localScale = new Vector3((float)length*0.1f, 1, 0.003f);
+            transform.localScale = new Vector3((float)length*0.1f, 1, 0.006f);
 
             // set up material
             Material newMat = Resources.Load("tape", typeof(Material)) as Material;
@@ -33,7 +33,7 @@ public class TapeInHands : MonoBehaviour {
             // set up position
             GameObject leftHand = VRTK_DeviceFinder.GetControllerLeftHand();
             transform.SetParent(leftHand.transform);
-            transform.localPosition = new Vector3( 0.0f, 0.0f, 0.0f);
+            transform.localPosition = new Vector3( 0.1f, 0.0f, 0.1f);
 
             // set up  cloth
             Cloth _cloth = this.GetComponent<Cloth>();
