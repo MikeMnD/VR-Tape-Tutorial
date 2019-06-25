@@ -39,6 +39,29 @@ public class StaticData : MonoBehaviour {
         return TargetTapeLength = 0.2;
     }
 
+    public static List<string> getTargetBodyCollider ()
+    {
+        BodyPartNum part = (BodyPartNum)targetNum;
+        List<string> ret = new List<string>();
+        switch (part)
+        {
+            case (BodyPartNum.ecum):
+                ret.Add("/playCollider/basket_player/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 L Clavicle/Bip001 L UpperArm/Bip001 L Forearm/Bip001 L Hand/L_wrist_1");
+                ret.Add("/playCollider/basket_player/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 L Clavicle/Bip001 L UpperArm/Bip001 L Forearm/L_wrist_2");
+                break;
+            case (BodyPartNum.back):
+                break;
+            case (BodyPartNum.pat):
+                break;
+            case (BodyPartNum.gas):
+                break;
+            default:
+                break;
+        }
+        return ret;
+    }
+
+
     public static void setIsCut (bool value)
     {
         isCut = value;
