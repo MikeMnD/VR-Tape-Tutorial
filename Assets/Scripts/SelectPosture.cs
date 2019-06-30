@@ -14,10 +14,10 @@ public class SelectPosture : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        anim.SetInteger("bodyPartNum", postureNum);
-        if(postureNum == 0)
-        {
+        //anim.SetInteger("bodyPartNum", postureNum);
+        //if(postureNum == 0)
+        //{
 
-        }
+        //}
 	}
 }

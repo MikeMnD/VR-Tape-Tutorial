@@ -41,19 +41,31 @@ public class StaticData : MonoBehaviour {
 
     public static List<string> getTargetBodyCollider ()
     {
-        BodyPartNum part = (BodyPartNum)targetNum;
+        BodyPartNum part = BodyPartNum.ecum;//(BodyPartNum)targetNum;
         List<string> ret = new List<string>();
         switch (part)
         {
             case (BodyPartNum.ecum):
-                ret.Add("/playCollider/basket_player/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 L Clavicle/Bip001 L UpperArm/Bip001 L Forearm/Bip001 L Hand/L_wrist_1");
-                ret.Add("/playCollider/basket_player/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 L Clavicle/Bip001 L UpperArm/Bip001 L Forearm/L_wrist_2");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 L Clavicle/Bip001 L UpperArm/Bip001 L Forearm/Bip001 L Hand/L_wrist_1");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 L Clavicle/Bip001 L UpperArm/Bip001 L Forearm/L_wrist_2");
                 break;
             case (BodyPartNum.back):
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Back_Top_L");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Back_Top_M");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Back_Top_R");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Back_Bot_1");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Back_Bot_2");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Back_Bot_3");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Back_Bot_4");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Back_Bot_5");
                 break;
             case (BodyPartNum.pat):
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Thigh/Pat_L_1");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Thigh/Pat_L_2");
                 break;
             case (BodyPartNum.gas):
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Thigh/Bip001 L Calf/Gas_L_1");
+                ret.Add("/playerCollider/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Thigh/Bip001 L Calf/Gas_L_2");
                 break;
             default:
                 break;

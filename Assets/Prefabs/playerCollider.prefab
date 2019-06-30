@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 23533761877578934}
   - component: {fileID: 136221315078033522}
   m_Layer: 0
-  m_Name: Capsule (1)
+  m_Name: Back_Top_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 23825040995285278}
   - component: {fileID: 136887221265430950}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Gas_L_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 23088992640665622}
   - component: {fileID: 136491408366237688}
   m_Layer: 0
-  m_Name: Capsule (1)
+  m_Name: Gas_L_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -875,7 +875,7 @@ GameObject:
   - component: {fileID: 23854668535999632}
   - component: {fileID: 136829748686723434}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Back_Top_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -908,7 +908,7 @@ GameObject:
   - component: {fileID: 23594946225750682}
   - component: {fileID: 136242015131310892}
   m_Layer: 0
-  m_Name: Capsule (2)
+  m_Name: Back_Top_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 23865058586263236}
   - component: {fileID: 136717606211515542}
   m_Layer: 0
-  m_Name: Capsule (4)
+  m_Name: Back_Bot_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 23928293344593102}
   - component: {fileID: 136589031254700892}
   m_Layer: 0
-  m_Name: Capsule (5)
+  m_Name: Back_Bot_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 23504844524852732}
   - component: {fileID: 136088148802496102}
   m_Layer: 0
-  m_Name: Capsule (3)
+  m_Name: Back_Bot_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 23877639486989606}
   - component: {fileID: 136264488884675984}
   m_Layer: 0
-  m_Name: Capsule (6)
+  m_Name: Back_Bot_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1214,7 +1214,7 @@ GameObject:
   - component: {fileID: 23882497964914362}
   - component: {fileID: 136748787557663440}
   m_Layer: 0
-  m_Name: Capsule (1)
+  m_Name: Pat_L_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1307,7 +1307,7 @@ GameObject:
   - component: {fileID: 23142624619012962}
   - component: {fileID: 136432822752219448}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Pat_L_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 23749557297046062}
   - component: {fileID: 136664833017843218}
   m_Layer: 0
-  m_Name: Capsule (7)
+  m_Name: Back_Bot_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

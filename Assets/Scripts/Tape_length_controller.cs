@@ -51,7 +51,7 @@ public class Tape_length_controller : MonoBehaviour {
             Vector3 vector_x = new Vector3(-0.01f, 0.0f, 0.0f);
             Vector3 current_vector = start_point.position - end_point.position;
             float angle = Vector3.Angle(vector_x, current_vector);
-            if(angle > 30.0f)
+            if(angle > 50.0f)
             {  
                 Debug.Log("angle is out of range");
                 tape.ForceStopInteracting();

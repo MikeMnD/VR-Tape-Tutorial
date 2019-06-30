@@ -37,10 +37,10 @@ public class TapeInHands : MonoBehaviour {
 
             // set up  cloth
             Cloth _cloth = this.GetComponent<Cloth>();
-            _cloth.enabled = false;
-            _cloth.gameObject.SetActive(false);
-            _cloth.gameObject.SetActive(true);
-            _cloth.enabled = true;
+            //_cloth.enabled = false;
+            //_cloth.gameObject.SetActive(false);
+            //_cloth.gameObject.SetActive(true);
+            //_cloth.enabled = true;
 
             // set up cloth collider !! NOT TEST !!
             List<string> collList = StaticData.getTargetBodyCollider();
@@ -51,10 +51,18 @@ public class TapeInHands : MonoBehaviour {
                 CapsuleCollider cc = capsule.GetComponent<CapsuleCollider>();
                 if(cc != null)
                 {
-                    ccList[i] = cc;
+                   ccList[i] = cc;
+                }
+                else {
+                    Debug.Log(collList[i]);
                 }
             }
-            _cloth.capsuleColliders = ccList;
+           _cloth.capsuleColliders = ccList;
+
+            _cloth.enabled = false;
+            _cloth.gameObject.SetActive(false); 
+            _cloth.gameObject.SetActive(true);
+            _cloth.enabled = true;
 
 
             // enable skin mesh renderer
