@@ -42,7 +42,7 @@ public class TapeInHands : MonoBehaviour {
             //_cloth.gameObject.SetActive(true);
             //_cloth.enabled = true;
 
-            // set up cloth collider !! NOT TEST !!
+            // set up cloth collider
             List<string> collList = StaticData.getTargetBodyCollider();
             CapsuleCollider[] ccList = new CapsuleCollider[collList.Count];
             for(int i = 0;i < collList.Count; ++i)
