@@ -35,10 +35,15 @@ public class ObiInHand : MonoBehaviour
             //renderer.material = newMat;
 
             // set up position
-            GameObject leftHand = VRTK_DeviceFinder.GetControllerLeftHand();
-            GameObject cube = GameObject.Find("/ObiSystem/Cube");
-            cube.transform.SetParent(leftHand.transform);
-            cube.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            GameObject leftController = VRTK_DeviceFinder.GetControllerLeftHand();
+            GameObject leftHandler = GameObject.Find("/ClothBothHand/left_hand");
+            leftHandler.transform.SetParent(leftController.transform);
+            leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+
+            GameObject rightController = VRTK_DeviceFinder.GetControllerRightHand();
+            GameObject rightHandler = GameObject.Find("/ClothBothHand/right_hand");
+            rightHandler.transform.SetParent(rightController.transform);
+            rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
 
 
 
