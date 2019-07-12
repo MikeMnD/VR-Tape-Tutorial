@@ -7,8 +7,10 @@ using Obi;
 public class ObiInHand : MonoBehaviour
 {
     public GameObject obiTape;
-    private bool setUp = false;
-    
+    private GameObject rightHandler;
+    private bool tapeAttachLeftHand = false;
+    private bool tapeAttachBothHands = false;
+
     // Use this for initialization
     void Start()
     {
@@ -21,34 +23,33 @@ public class ObiInHand : MonoBehaviour
     {
 
         // check if show scissor and not setup and cut
-        if (StaticData.getIsCut() && StaticData.getShowScissor() && !setUp)
+        if (StaticData.getIsCut() && StaticData.getShowScissor() && !tapeAttachLeftHand)
         {
             obiTape.transform.position = this.transform.position;
             obiTape.SetActive(true);
             
             // set up position
-            //GameObject leftController = VRTK_DeviceFinder.GetControllerLeftHand();
             GameObject leftHandler = GameObject.Find("/TapeController/clothPart/left_hand");
-            //leftHandler.transform.SetParent(leftController.transform);
             leftHandler.transform.SetParent(this.transform);
             leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            leftHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
 
-            GameObject rightController = VRTK_DeviceFinder.GetControllerRightHand();
-            GameObject rightHandler = GameObject.Find("/TapeController/clothPart/right_hand");
-            rightHandler.transform.SetParent(rightController.transform);
-            rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-
-            setUp = true;
+            tapeAttachLeftHand = true;
         }
 
-        /*
-        else if(setUp  )          // left hand grab one of sides of the tape
+
+        if (tapeAttachLeftHand && !tapeAttachBothHands)
         {
             GameObject rightController = VRTK_DeviceFinder.GetControllerRightHand();
-            GameObject rightHandler = GameObject.Find("/TapeController/right_hand");
-            rightHandler.transform.SetParent(rightController.transform);
-            rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            GameObject rightHandler = GameObject.Find("/TapeController/clothPart/right_hand");
+
+            // touch and grab the right side of the tape
+            if (rightHandler != null && rightHandler.GetComponent<VRTK_InteractableObject>().IsGrabbed())
+            {
+                rightHandler.transform.SetParent(rightController.transform);
+                rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                tapeAttachBothHands = true;
+            }
         }
-        */
     }
 }
