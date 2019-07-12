@@ -36,17 +36,15 @@ public class ObiInHand : MonoBehaviour
 
             // set up position
             GameObject leftController = VRTK_DeviceFinder.GetControllerLeftHand();
-            GameObject leftHandler = GameObject.Find("/ClothBothHand/left_hand");
+            GameObject leftHandler = GameObject.Find("/TapeController/left_hand");
             leftHandler.transform.SetParent(leftController.transform);
             leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             
             GameObject rightController = VRTK_DeviceFinder.GetControllerRightHand();
-            GameObject rightHandler = GameObject.Find("/ClothBothHand/right_hand");
+            GameObject rightHandler = GameObject.Find("/TapeController/right_hand");
             rightHandler.transform.SetParent(rightController.transform);
             rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             
-
-
             //transform.SetParent(leftHand.transform);
             //transform.localPosition = new Vector3(0.3f, 0.1f, 0.0f);
 
