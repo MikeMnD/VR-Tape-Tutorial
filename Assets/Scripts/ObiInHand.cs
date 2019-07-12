@@ -6,15 +6,14 @@ using Obi;
 
 public class ObiInHand : MonoBehaviour
 {
+    public GameObject obiTape;
     private bool setUp = false;
-
-    //ObiCloth obiCloth;
-
+    
     // Use this for initialization
     void Start()
     {
-        //obiCloth = this.GetComponent<ObiCloth>();
-        //obiCloth.enabled = false;
+        obiTape.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -24,73 +23,32 @@ public class ObiInHand : MonoBehaviour
         // check if show scissor and not setup and cut
         if (StaticData.getIsCut() && StaticData.getShowScissor() && !setUp)
         {
-
-            // set up length
-            //double length = StaticData.getTargetTapeLength();
-            //transform.localScale = new Vector3((float)length * 0.1f, 1, 0.006f);
-
-            // set up material
-            //Material newMat = Resources.Load("tape", typeof(Material)) as Material;
-            //Renderer renderer = GetComponent<Renderer>();
-            //renderer.material = newMat;
-
-            // set up position
-            GameObject leftController = VRTK_DeviceFinder.GetControllerLeftHand();
-            GameObject leftHandler = GameObject.Find("/TapeController/left_hand");
-            leftHandler.transform.SetParent(leftController.transform);
-            leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            obiTape.transform.position = this.transform.position;
+            obiTape.SetActive(true);
             
+            // set up position
+            //GameObject leftController = VRTK_DeviceFinder.GetControllerLeftHand();
+            GameObject leftHandler = GameObject.Find("/TapeController/clothPart/left_hand");
+            //leftHandler.transform.SetParent(leftController.transform);
+            leftHandler.transform.SetParent(this.transform);
+            leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+
             GameObject rightController = VRTK_DeviceFinder.GetControllerRightHand();
-            GameObject rightHandler = GameObject.Find("/TapeController/right_hand");
+            GameObject rightHandler = GameObject.Find("/TapeController/clothPart/right_hand");
             rightHandler.transform.SetParent(rightController.transform);
             rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            
-            //transform.SetParent(leftHand.transform);
-            //transform.localPosition = new Vector3(0.3f, 0.1f, 0.0f);
-
-            /*
-            GameObject rightHand = VRTK_DeviceFinder.GetControllerRightHand();
-            transform.SetParent(rightHand.transform);
-            transform.localPosition = new Vector3(0.3f, 0.1f, 0.0f);
-            */
-
-            // set up  cloth
-            //Cloth _cloth = this.GetComponent<Cloth>();
-            //_cloth.enabled = false;
-            //_cloth.gameObject.SetActive(false);
-            //_cloth.gameObject.SetActive(true);
-            //_cloth.enabled = true;
-
-            // set up cloth collider
-            /*
-            List<string> collList = StaticData.getTargetBodyCollider();
-            CapsuleCollider[] ccList = new CapsuleCollider[collList.Count];
-            for (int i = 0; i < collList.Count; ++i)
-            {
-                GameObject capsule = GameObject.Find(collList[i]);
-                CapsuleCollider cc = capsule.GetComponent<CapsuleCollider>();
-                if (cc != null)
-                {
-                    ccList[i] = cc;
-                }
-                else
-                {
-                    Debug.Log(collList[i]);
-                }
-            }
-            _cloth.capsuleColliders = ccList;
-
-            _cloth.enabled = false;
-            _cloth.gameObject.SetActive(false);
-            _cloth.gameObject.SetActive(true);
-            _cloth.enabled = true;
-            */
-
-            // enable skin mesh renderer
-            //obiCloth.enabled = true;
 
             setUp = true;
         }
 
+        /*
+        else if(setUp  )          // left hand grab one of sides of the tape
+        {
+            GameObject rightController = VRTK_DeviceFinder.GetControllerRightHand();
+            GameObject rightHandler = GameObject.Find("/TapeController/right_hand");
+            rightHandler.transform.SetParent(rightController.transform);
+            rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+        */
     }
 }
