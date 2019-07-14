@@ -29,7 +29,6 @@ GameObject:
   - component: {fileID: 114746253184798880}
   - component: {fileID: 114199173105052780}
   - component: {fileID: 114312124917434240}
-  - component: {fileID: 114810552961123120}
   m_Layer: 0
   m_Name: clothPart
   m_TagString: Untagged
@@ -99,6 +98,12 @@ GameObject:
   - component: {fileID: 23673422522166068}
   - component: {fileID: 65586238464836536}
   - component: {fileID: 114833676533056768}
+  - component: {fileID: 54184829315850990}
+  - component: {fileID: 114587300668878376}
+  - component: {fileID: 114701922411546392}
+  - component: {fileID: 114323823602549114}
+  - component: {fileID: 114904340784117246}
+  - component: {fileID: 114436218849713268}
   m_Layer: 0
   m_Name: right_hand
   m_TagString: Untagged
@@ -126,8 +131,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1679992295397396}
   m_LocalRotation: {x: -0, y: -0, z: -4.6566134e-10, w: 1}
-  m_LocalPosition: {x: 0.0030231597, y: -0.016177023, z: 0.43161824}
-  m_LocalScale: {x: 0.08333334, y: 0.016666664, z: 0.016666664}
+  m_LocalPosition: {x: 0.0030231597, y: 0.01617702, z: 0.43161824}
+  m_LocalScale: {x: 0.08333334, y: 0.016666664, z: 0.01666666}
   m_Children: []
   m_Father: {fileID: 4443128935987618}
   m_RootOrder: 0
@@ -154,7 +159,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1799334583851096}
   m_LocalRotation: {x: -0, y: -0, z: -4.6566134e-10, w: 1}
-  m_LocalPosition: {x: 0.003023141, y: -0.016177066, z: -0.43504825}
+  m_LocalPosition: {x: 0.003, y: 0.01617702, z: -0.435}
   m_LocalScale: {x: 0.08333334, y: 0.016666664, z: 0.016666664}
   m_Children: []
   m_Father: {fileID: 4443128935987618}
@@ -166,7 +171,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1410543536762294}
-  m_LocalRotation: {x: 0.13860267, y: 0.039849896, z: 0.0055793524, w: 0.98953027}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.251, y: 1.586, z: 0.538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -174,7 +179,7 @@ Transform:
   - {fileID: 4245861171724758}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15.894, y: 4.796, z: 1.316}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23505577023106510
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -302,6 +307,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1679992295397396}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54184829315850990
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799334583851096}
+  serializedVersion: 2
+  m_Mass: 0.0005
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!65 &65358412339513108
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2082,6 +2102,35 @@ MonoBehaviour:
   tetherScale: 1
   stiffness: 1
   batches: []
+--- !u!114 &114323823602549114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799334583851096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec2ac476f2fc9a45a4e69712580a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 0
+  rightSnapHandle: {fileID: 4461032378871652}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+--- !u!114 &114436218849713268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799334583851096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62359d80fdc0e4315ab6331b78ec5b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kinematicForParticles: 0
 --- !u!114 &114460672346355954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2226,6 +2275,25 @@ MonoBehaviour:
     iterations: 3
     SORFactor: 1
     enabled: 0
+--- !u!114 &114587300668878376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799334583851096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc4b5dd2be1cea4aaea2850b910d3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
+  touchHighlight: {r: 1, g: 0.9875331, b: 0, a: 0}
+  grabHighlight: {r: 0, g: 0, b: 0, a: 0}
+  useHighlight: {r: 0, g: 0, b: 0, a: 0}
+  objectToMonitor: {fileID: 0}
+  objectToHighlight: {fileID: 0}
+  objectHighlighter: {fileID: 0}
+  objectToAffect: {fileID: 0}
 --- !u!114 &114664387026971718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2647,6 +2715,17 @@ MonoBehaviour:
     - 0.00033062915
     - 0.06125
     - 0.06125
+--- !u!114 &114701922411546392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799334583851096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114746253184798880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3351,18 +3430,6 @@ MonoBehaviour:
     - {x: 4.0000003e-11, y: 0}
     - {x: 4.0000003e-11, y: 0}
     - {x: 4.0000003e-11, y: 0}
---- !u!114 &114810552961123120
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1150614077896528}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fae9bd0117f66f943a10d502cbde3b91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obiTape: {fileID: 0}
 --- !u!114 &114833676533056768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3380,3 +3447,35 @@ MonoBehaviour:
   sourceCollider: {fileID: 65586238464836536}
   useDistanceFields: 0
   distanceField: {fileID: 0}
+--- !u!114 &114904340784117246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799334583851096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 0
+  stayGrabbedOnTeleport: 1
+  validDrop: 0
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 114323823602549114}
+  secondaryGrabActionScript: {fileID: 114701922411546392}
+  isUsable: 0
+  holdButtonToUse: 0
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
