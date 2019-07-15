@@ -27,7 +27,12 @@ public class ObiPinConstraints : ObiBatchedConstraints
 		return batches.Cast<ObiConstraintBatch>();
 	}
 
-	public ObiPinConstraintBatch GetFirstBatch(){
+    public List<ObiPinConstraintBatch> GetPinBatches()
+    {
+        return batches;
+    }
+
+        public ObiPinConstraintBatch GetFirstBatch(){
 		return batches.Count > 0 ? batches[0] : null;
 	}
 
