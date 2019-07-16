@@ -48,7 +48,7 @@ public class ObiPinConstraintBatch : ObiConstraintBatch
 	}
 
 	public void AddConstraint(int index1, ObiColliderBase body, Vector3 offset, Quaternion restDarboux, float stiffness){
-		activeConstraints.Add(constraintCount);
+        activeConstraints.Add(constraintCount);
 		pinIndices.Add(index1);
 		pinBodies.Add(body);
 		pinOffsets.Add(offset);

@@ -6,79 +6,82 @@ using Obi;
 
 public class MoveHandler : MonoBehaviour {
 
-    private GameObject rightController;
-    private GameObject rightHandler;
-    VRTK_InteractableObject interactHandler; 
+    private int[] indices = { 114, 109, 108, 107, 100, 95, 94, 93, 86, 81, 80,
+                                        79, 72, 67, 66, 65, 58, 53, 52, 51, 44, 39,
+                                        38, 37, 30, 25, 24, 23, 14, 9, 7, 6, 8};
+    private int[] indicesNeg = { 111, 110, 105, 104, 97, 96, 91, 90, 83, 82, 77,
+                                                76, 69, 68, 63, 62, 55, 54, 49, 48, 41, 40,
+                                                35, 34, 27, 26, 21, 20, 11, 10, 4, 1, 0};
+
+    private Quaternion restDarboux;
+    private Vector3 offset;
+    private Vector3 offsetNeg;
+
+    private GameObject leftController;
+    private GameObject rightController;     // right vive controller
+    private GameObject tapeSection;
+    private GameObject leftHandler;
+    private GameObject rightHandler;        // the right cube attached the cloth
+    private VRTK_InteractableObject interactRightHandler;    // right handler component
     private ObiCloth obiCloth;
 
 	// Use this for initialization
 	void Start () {
+        restDarboux = new Quaternion(0.7f, 0.0f, 0.0f, 0.7f);
+        offset = new Vector3(0.2f, 1.0f, 0.0f);
+        offsetNeg = new Vector3(-0.2f, 1.0f, 0.0f);
+
+        leftController = VRTK_DeviceFinder.GetControllerLeftHand();
         rightController = VRTK_DeviceFinder.GetControllerRightHand();
+        leftHandler = GameObject.Find("clothPart/left_hand");
         rightHandler = GameObject.Find("clothPart/right_hand");
-        interactHandler = rightHandler.GetComponent<VRTK_InteractableObject>();
-        obiCloth = GameObject.Find("clothPart").GetComponent<ObiCloth>();
+        tapeSection = GameObject.Find("clothPart");
+        obiCloth = tapeSection.GetComponent<ObiCloth>();
+//        interactLeftHandler = leftHandler.GetComponent<VRTK_InteractableObject>();
+        interactRightHandler = rightHandler.GetComponent<VRTK_InteractableObject>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-        //IEnumerable<ObiConstraintBatch> ts = obiCloth.PinConstraints.batches;
-        List<ObiPinConstraintBatch> ts = obiCloth.PinConstraints.GetPinBatches();
-
-        //Debug.Log(ts.Count);        // 1
-        Debug.Log("index :" + ts[0].pinIndices[0]);
-        Debug.Log("index :" + ts[0].pinIndices[1]);
-        Debug.Log("index :" + ts[0].pinIndices[2]);
-        Debug.Log("index :" + ts[0].pinIndices[3]);
-        /*
-        foreach (ObiPinConstraintBatch ocb in ts)
+    // Update is called once per frame
+    void Update() {
+        
+        /* 
+        // get the pin constraint information
+        ObiPinConstraintBatch ts = obiCloth.PinConstraints.GetFirstBatch();     // only one batch in obi cloth!
+        for (int i = 0; i < ts.ConstraintCount; ++i)
         {
-            // !! todo print ocb.pinindice[0:4]
-            //Debug.Log(ocb.ConstraintCount);             // 4
-            Debug.Log("length: " + ocb.pinIndices.Count + ", index = " + ocb.pinIndices[0]);    // the index of the pin constraints
-            // solverIndices[i] = constraints.Actor.particleIndices[pinIndices[i]];
-            //           List<int> ocbList = ocb.GetConstraintsInvolvingParticle(0);
-            //           Debug.Log(ocbList.Count);
+            Debug.Log("restDarbouxVectors: " + ts.restDarbouxVectors[i]);        // (0.7,0,0,0.7)
+            Debug.Log("offset: " + ts.pinOffsets[i]);
+            Debug.Log("index :" + ts.pinIndices[i]);
         }
         */
-
-        ObiActor actor = obiCloth;
-        ObiSolver solver = actor.Solver;
-        //Debug.Log("particle number : " + actor.particleIndices.Length);     // 33 * 4 = 132
-
         
-        //Debug.Log(actor.GetParticlePosition(0));
-     // solver index of the first particle in the actor.
-        //ObiSolver solver = actor.Solver;
-        //int particleSolverIndex = actor.particleIndices[0];
 
-
-
-        if (interactHandler.IsUsing() && interactHandler.GetUsingObject().name == rightController.name)
+        if (interactRightHandler.IsUsing() && interactRightHandler.GetUsingObject().name == rightController.name)
         {
-            /*
-            for (int i = 0; i < actor.particleIndices.Length; ++i)
-            {
-                Vector3 pos = solver.renderablePositions[actor.particleIndices[i]];
-                Debug.Log(pos);
-            }
-            */
-
-
-            // remove the right handler pin constraints -- ObiPinConstraints.AddBatches();
-            // get the current pin constraints
-
-            // get the current position of the right handler
-            // add the right handler pin constraints
-
             Debug.Log("using cloth");
-            //            obiCloth.PinConstraints
-            IEnumerable<ObiConstraintBatch> ocb_batch = obiCloth.PinConstraints.GetBatches();
-            foreach(ObiConstraintBatch ocb in ocb_batch)
-            {
-                Debug.Log(ocb.ToString());
-            }
+            ObiPinConstraints pinConstraints = obiCloth.GetComponent<ObiPinConstraints>();
+            ObiPinConstraintBatch pinConstraintBatch = pinConstraints.GetFirstBatch();
+            Debug.Log(pinConstraintBatch.ConstraintCount);      // test!!
 
+            pinConstraints.RemoveFromSolver(null);
+            // MODIFY CONSTRAINTS HERE!
+
+            // remove the pinConstraintBatch
+            //pinConstraintBatch.RemoveConstraint(0);
+            //pinConstraintBatch.RemoveConstraint(1);
+            pinConstraintBatch.RemoveConstraint(2);
+            pinConstraintBatch.RemoveConstraint(3);
+
+            /////////////pinConstraintBatch.pinIndices.Clear();
+            Debug.Log(pinConstraintBatch.ConstraintCount);      // test!!
+
+            // TODO what is restDarboux
+            //            pinConstraintBatch.AddConstraint(9, rightHandler, offset, restDarboux, 1);
+            //            pinConstraintBatch.AddConstraint(10, rightHandler, offset, restDarboux, 1);
+            pinConstraintBatch.AddConstraint(53, rightHandler.GetComponent<ObiCollider>(), offset, restDarboux, 1);
+            pinConstraintBatch.AddConstraint(54, rightHandler.GetComponent<ObiCollider>(), offsetNeg, restDarboux, 1);
+
+            pinConstraints.AddToSolver(null);
         }
     }
 }
