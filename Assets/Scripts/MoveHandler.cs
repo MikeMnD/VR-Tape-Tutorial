@@ -54,8 +54,8 @@ public class MoveHandler : MonoBehaviour {
             Debug.Log("index :" + ts.pinIndices[i]);
         }
         */
-        
 
+        // if handler.isUsing and grab controller and **touch the hint**
         if (interactRightHandler.IsUsing() && interactRightHandler.GetUsingObject().name == rightController.name)
         {
             Debug.Log("using cloth");
