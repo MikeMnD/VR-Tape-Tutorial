@@ -57,6 +57,8 @@ public class MoveHandler : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        // TODO!! enable handler to certain position!
+
         /*
         // get the pin constraint information
         ObiPinConstraintBatch ts = obiCloth.PinConstraints.GetFirstBatch();     // only one batch in obi cloth!
@@ -74,33 +76,49 @@ public class MoveHandler : MonoBehaviour {
             {
                 Debug.Log("cur = " + cur);
 
+                GameObject handler = GameObject.Find("Obi Handle");
+                /* 
+                int index = -1;
+                for(int i = 0; i < ((ObiActor)obiCloth).particleIndices.Length; ++i) {
+                    if(obiCloth.particleIndices[i] == 114) {
+                        index = i;
+                        break;
+                    }
+                }
+                */
+                // Vector3 pos = obiCloth.Solver.renderablePositions[obiCloth.particleIndices[index]];
+                // handler.transform.position = (obiCloth.GetParticlePosition(114));
+                handler.transform.SetParent(hint[cur].transform);
+                handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                // handler.GetComponent<ObiParticleHandle>().enabled = true;
+
                 ObiPinConstraints pinConstraints = obiCloth.GetComponent<ObiPinConstraints>();
                 ObiPinConstraintBatch pinConstraintBatch = pinConstraints.GetFirstBatch();
 
                 pinConstraints.RemoveFromSolver(null);
 
                 // remove all
-                pinConstraintBatch.RemoveConstraint(3);
-                pinConstraintBatch.RemoveConstraint(2);
-                pinConstraintBatch.RemoveConstraint(1);
-                pinConstraintBatch.RemoveConstraint(0);
+                // pinConstraintBatch.RemoveConstraint(3);
+                // pinConstraintBatch.RemoveConstraint(2);
+                // pinConstraintBatch.RemoveConstraint(1);
+                // pinConstraintBatch.RemoveConstraint(0);
 
                 //Debug.Log(pinConstraintBatch.ConstraintCount);
 
-                if (cur < hint.Length-2)
-                {
-                    // add the pinConstraintBatch
+                // if (cur < hint.Length-2)
+                // {
+                //     // add the pinConstraintBatch
 
-                    pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2], leftCollider, offset, restDarboux, 1);
-                    pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2 + 1], leftCollider, offsetNeg, restDarboux, 1);
-                    pinConstraintBatch.AddConstraint(8, rightCollider, offsetNeg, restDarboux, 1);
-                    pinConstraintBatch.AddConstraint(0, rightCollider, offsetNeg, restDarboux, 1);
-                }
+                //     pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2], leftCollider, offset, restDarboux, 1);
+                //     pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2 + 1], leftCollider, offsetNeg, restDarboux, 1);
+                //     pinConstraintBatch.AddConstraint(8, rightCollider, offsetNeg, restDarboux, 1);
+                //     pinConstraintBatch.AddConstraint(0, rightCollider, offsetNeg, restDarboux, 1);
+                // }
 
                 pinConstraints.AddToSolver(null);
 
                 stickBtn.StopUsing();
-                hint[cur].SetActive(false);
+                // hint[cur].SetActive(false);
 
                 ++cur;
                 Debug.Log("next = " + cur);
@@ -111,42 +129,6 @@ public class MoveHandler : MonoBehaviour {
                 //Debug.Log(pinConstraintBatch.ConstraintCount);
             }
         }
-        
-        /*
-        // if handler.isUsing and grab controller and **touch the hint**
-        if (interactRightHandler.IsUsing() && interactRightHandler.GetUsingObject().name == rightController.name)
-        {
-            Debug.Log("using cloth");
-            ObiPinConstraints pinConstraints = obiCloth.GetComponent<ObiPinConstraints>();
-            ObiPinConstraintBatch pinConstraintBatch = pinConstraints.GetFirstBatch();
-
-            pinConstraints.RemoveFromSolver(null);
-
-            // remove the pinConstraintBatch on the right hand
-            pinConstraintBatch.RemoveConstraint(2);
-            pinConstraintBatch.RemoveConstraint(3);
-
-            // find the nearest particle position
-            
-            //Vector3[] posArray = new Vector3[indices.Length];
-            //for(int i = 0; i < indices.Length;++i)
-            //{
-                //int idx = obiCloth.particleIndices[i];
-                //Debug.Log(idx);
-                //posArray[i] = obiCloth.GetParticlePosition(indices[i]);
-                //Debug.Log(indices[i].ToString() + " " + posArray[i].ToString());
-            //}
-
-            //getClosestParticle(posArray);
-            //Debug.Log(pos);
-
-            // add the pinConstraintBatch
-            pinConstraintBatch.AddConstraint(53, rightHandler.GetComponent<ObiCollider>(), offset, restDarboux, 1);
-            pinConstraintBatch.AddConstraint(54, rightHandler.GetComponent<ObiCollider>(), offsetNeg, restDarboux, 1);
-
-            pinConstraints.AddToSolver(null);
-        }
-        */    
     }
     
 
