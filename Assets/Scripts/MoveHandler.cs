@@ -13,7 +13,7 @@ public class MoveHandler : MonoBehaviour {
                                                     76, 69, 68, 63, 62, 55, 54, 49, 48, 41, 40,
                                                     35, 34, 27, 26, 21, 20, 11, 10, 4, 1, 0};
                                                     */
-    private int[] leftAttachNode = { 81, 82, 37, 34 };
+    private int[] leftAttachNode = {39, 40 ,81, 82};
     private int[] curIndices = { 8, 0 };        // the bottom particle
     private GameObject[] hint;
     private int cur = 0;                                // record the current hint
@@ -56,6 +56,7 @@ public class MoveHandler : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        // printInfo();
 
         // TODO!! enable handler to certain position!
 
@@ -76,44 +77,32 @@ public class MoveHandler : MonoBehaviour {
             {
                 Debug.Log("cur = " + cur);
 
-                GameObject handler = GameObject.Find("Obi Handle");
-                /* 
-                int index = -1;
-                for(int i = 0; i < ((ObiActor)obiCloth).particleIndices.Length; ++i) {
-                    if(obiCloth.particleIndices[i] == 114) {
-                        index = i;
-                        break;
-                    }
-                }
-                */
-                // Vector3 pos = obiCloth.Solver.renderablePositions[obiCloth.particleIndices[index]];
-                // handler.transform.position = (obiCloth.GetParticlePosition(114));
+                GameObject handler = GameObject.Find("Handler1");
+                if(cur == 1)
+                    handler = GameObject.Find("Handler2");
+
+                
                 handler.transform.SetParent(hint[cur].transform);
                 handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                // handler.GetComponent<ObiParticleHandle>().enabled = true;
+
+                if(cur != 0)
+                    handler.GetComponent<ObiParticleHandle>().enabled = true;
+
+                leftController = GameObject.Find("left_hand"); 
+                leftCollider.enabled = true;
 
                 ObiPinConstraints pinConstraints = obiCloth.GetComponent<ObiPinConstraints>();
                 ObiPinConstraintBatch pinConstraintBatch = pinConstraints.GetFirstBatch();
 
                 pinConstraints.RemoveFromSolver(null);
 
-                // remove all
-                // pinConstraintBatch.RemoveConstraint(3);
-                // pinConstraintBatch.RemoveConstraint(2);
-                // pinConstraintBatch.RemoveConstraint(1);
-                // pinConstraintBatch.RemoveConstraint(0);
+                if(cur == 1) {
+                    pinConstraintBatch.RemoveConstraint(3);
+                    pinConstraintBatch.RemoveConstraint(2);
+                }
 
-                //Debug.Log(pinConstraintBatch.ConstraintCount);
-
-                // if (cur < hint.Length-2)
-                // {
-                //     // add the pinConstraintBatch
-
-                //     pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2], leftCollider, offset, restDarboux, 1);
-                //     pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2 + 1], leftCollider, offsetNeg, restDarboux, 1);
-                //     pinConstraintBatch.AddConstraint(8, rightCollider, offsetNeg, restDarboux, 1);
-                //     pinConstraintBatch.AddConstraint(0, rightCollider, offsetNeg, restDarboux, 1);
-                // }
+                pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2], leftCollider, offset, restDarboux, 1);
+                pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2 + 1], leftCollider, offsetNeg, restDarboux, 1);
 
                 pinConstraints.AddToSolver(null);
 
@@ -149,6 +138,18 @@ public class MoveHandler : MonoBehaviour {
         }
 
         return bestIndex;
+    }
+
+    public void printInfo() {
+        // get the pin constraint information
+        ObiCloth obiCloth = GameObject.Find("clothPart").GetComponent<ObiCloth>();
+        ObiPinConstraintBatch ts = obiCloth.PinConstraints.GetFirstBatch();     // only one batch in obi cloth!
+        for (int i = 0; i < ts.ConstraintCount; ++i)
+        {
+            Debug.Log("restDarbouxVectors: " + ts.restDarbouxVectors[i]);        // (0.7,0,0,0.7)
+            Debug.Log("offset: " + ts.pinOffsets[i]);
+            Debug.Log("index :" + ts.pinIndices[i]);
+        }
     }
 
 }
