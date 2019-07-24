@@ -74,21 +74,20 @@ public class MoveHandler : MonoBehaviour {
         if(cur < hint.Length) { 
             VRTK_InteractableObject stickBtn = hint[cur].GetComponent<VRTK_InteractableObject>();
 
-            if(cur == 3)
-                Debug.Log(rightController.GetComponent<VRTK_InteractUse>().GetUsingObject());
-
-
             if (stickBtn != null && stickBtn.IsUsing())
             {
                 Debug.Log("cur = " + cur);
 
+                // fix current position
                 GameObject handler = GameObject.Find("Handler1");
                 if(cur == 1)
                     handler = GameObject.Find("Handler2");
                 if(cur == 2)
                     handler = GameObject.Find("Handler3");
-                
-                if(cur < 3) {
+                if(cur == 3)
+                    handler = GameObject.Find("Handler4");
+
+                if(cur <= 3) {
                     handler.transform.SetParent(hint[cur].transform);
                     handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
                 }
@@ -96,46 +95,76 @@ public class MoveHandler : MonoBehaviour {
                 if(cur != 0)
                     handler.GetComponent<ObiParticleHandle>().enabled = true;
 
+                // move on to next position
                 leftController = GameObject.Find("left_hand"); 
                 leftCollider.enabled = true;
+                
 
                 ObiPinConstraints pinConstraints = obiCloth.GetComponent<ObiPinConstraints>();
                 ObiPinConstraintBatch pinConstraintBatch = pinConstraints.GetFirstBatch();
 
                 pinConstraints.RemoveFromSolver(null);
 
+
+                // remove previous position constraints first
+                if(cur == 0) {
+                    // do nothing
+                    // no constraint at the left hand side
+                }
                 if(cur == 1) {
                     pinConstraintBatch.RemoveConstraint(3);
                     pinConstraintBatch.RemoveConstraint(2);
                 }
-
-                if(cur < 2) {
-                    pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2], leftCollider, offset, restDarboux, 1);
-                    pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2 + 1], leftCollider, offsetNeg, restDarboux, 1);
+                if(cur == 2) {
+                    pinConstraintBatch.RemoveConstraint(3);
+                    pinConstraintBatch.RemoveConstraint(2);                    
                 }
-
-
                 if(cur == 3) {
-                    // rightController = GameObject.Find("right_hand");
-                    // VRTK_InteractableObject obj = rightController.GetComponent<VRTK_InteractableObject>();
-                    Debug.Log("last step");
                     pinConstraintBatch.RemoveConstraint(1);
                     pinConstraintBatch.RemoveConstraint(0);
                 }
 
-                
+                // add next position constraint
+                if(cur == 0 || cur == 1) {
+                    pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2], leftCollider, offset, restDarboux, 1);
+                    pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2 + 1], leftCollider, offsetNeg, restDarboux, 1);
+                }
+
                 pinConstraints.AddToSolver(null);
 
                 // stickBtn.StopUsing();
                 // hint[cur].SetActive(false);
+                hint[cur].GetComponent<MeshRenderer>().enabled = false;
+                hint[cur].transform.GetChild(0).gameObject.SetActive(false);
 
                 ++cur;
                 Debug.Log("next = " + cur);
 
-                hint[cur].GetComponent<MeshRenderer>().enabled = true;
-                hint[cur].transform.GetChild(0).gameObject.SetActive(true);
+                if(cur < hint.Length) {
+                    hint[cur].GetComponent<MeshRenderer>().enabled = true;
+                    hint[cur].transform.GetChild(0).gameObject.SetActive(true);
+                }
 
-                //Debug.Log(pinConstraintBatch.ConstraintCount);
+                if(cur == 3) {
+                    rightController = VRTK_DeviceFinder.GetControllerRightHand();
+
+                    GameObject tmp = GameObject.Find("Handler4");
+                    tmp.GetComponent<ObiParticleHandle>().enabled = true;
+                    tmp.transform.SetParent(rightController.transform);
+ 
+                    
+                    GameObject rightHand = GameObject.Find("right_hand");
+                    rightHand.GetComponent<Rigidbody>().useGravity = false;
+                    VRTK_InteractableObject obj = rightHand.GetComponent<VRTK_InteractableObject>();
+                    // obj.StopUsing();
+                    // obj.isUsable = false;
+                    obj.enabled = false;
+
+                    rightHand.transform.SetParent(rightController.transform);               
+                    rightHand.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                    rightHand.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));    
+                }
+
             }
         }
     }
