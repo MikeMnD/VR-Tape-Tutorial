@@ -44,7 +44,8 @@ public class ObiInHand : MonoBehaviour
             GameObject rightHandler = GameObject.Find("/TapeController/clothPart/right_hand");
 
             // touch and grab the right side of the tape
-            if (rightHandler != null && rightHandler.GetComponent<VRTK_InteractableObject>().IsGrabbed())
+            // if (rightHandler != null && rightHandler.GetComponent<VRTK_InteractableObject>().IsGrabbed())
+            if (rightHandler != null && rightController.GetComponent<VRTK_InteractGrab>().IsGrabButtonPressed())
             {
                 rightHandler.transform.SetParent(rightController.transform);
                 rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);

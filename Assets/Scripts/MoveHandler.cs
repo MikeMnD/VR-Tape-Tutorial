@@ -73,6 +73,11 @@ public class MoveHandler : MonoBehaviour {
 
         if(cur < hint.Length) { 
             VRTK_InteractableObject stickBtn = hint[cur].GetComponent<VRTK_InteractableObject>();
+
+            if(cur == 3)
+                Debug.Log(rightController.GetComponent<VRTK_InteractUse>().GetUsingObject());
+
+
             if (stickBtn != null && stickBtn.IsUsing())
             {
                 Debug.Log("cur = " + cur);
@@ -80,10 +85,13 @@ public class MoveHandler : MonoBehaviour {
                 GameObject handler = GameObject.Find("Handler1");
                 if(cur == 1)
                     handler = GameObject.Find("Handler2");
-
+                if(cur == 2)
+                    handler = GameObject.Find("Handler3");
                 
-                handler.transform.SetParent(hint[cur].transform);
-                handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                if(cur < 3) {
+                    handler.transform.SetParent(hint[cur].transform);
+                    handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                }
 
                 if(cur != 0)
                     handler.GetComponent<ObiParticleHandle>().enabled = true;
@@ -101,12 +109,24 @@ public class MoveHandler : MonoBehaviour {
                     pinConstraintBatch.RemoveConstraint(2);
                 }
 
-                pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2], leftCollider, offset, restDarboux, 1);
-                pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2 + 1], leftCollider, offsetNeg, restDarboux, 1);
+                if(cur < 2) {
+                    pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2], leftCollider, offset, restDarboux, 1);
+                    pinConstraintBatch.AddConstraint(leftAttachNode[cur * 2 + 1], leftCollider, offsetNeg, restDarboux, 1);
+                }
 
+
+                if(cur == 3) {
+                    // rightController = GameObject.Find("right_hand");
+                    // VRTK_InteractableObject obj = rightController.GetComponent<VRTK_InteractableObject>();
+                    Debug.Log("last step");
+                    pinConstraintBatch.RemoveConstraint(1);
+                    pinConstraintBatch.RemoveConstraint(0);
+                }
+
+                
                 pinConstraints.AddToSolver(null);
 
-                stickBtn.StopUsing();
+                // stickBtn.StopUsing();
                 // hint[cur].SetActive(false);
 
                 ++cur;
