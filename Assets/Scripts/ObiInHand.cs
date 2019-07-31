@@ -6,7 +6,7 @@ using Obi;
 
 public class ObiInHand : MonoBehaviour
 {
-    public GameObject obiTape;
+    private GameObject obiTape;
     private GameObject rightHandler;
     private bool tapeAttachLeftHand = false;
     private bool tapeAttachBothHands = false;
@@ -14,6 +14,7 @@ public class ObiInHand : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        obiTape = GameObject.Find("TapeController");
         obiTape.SetActive(false);
 
     }

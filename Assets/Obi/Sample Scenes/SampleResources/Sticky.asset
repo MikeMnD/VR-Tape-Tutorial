@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friction: 1
   stickiness: 0.12
-  stickDistance: 0.05
+  stickDistance: 0.1
   frictionCombine: 3
   stickinessCombine: 3

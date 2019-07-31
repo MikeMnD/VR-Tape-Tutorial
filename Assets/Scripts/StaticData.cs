@@ -84,6 +84,10 @@ public class StaticData : MonoBehaviour {
         showScissor = value;
     }
 
+    public static void resetAll() {
+        showScissor = false;
+        isCut = false;
+    }
     public static bool getShowScissor()
     {
         return showScissor;

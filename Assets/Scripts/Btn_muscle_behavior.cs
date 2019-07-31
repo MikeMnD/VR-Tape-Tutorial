@@ -14,6 +14,7 @@
             Debug.Log("go to next scene");
             /* change scene */
             //SceneManager.LoadScene(this.name);
+            StaticData.resetAll();
             SceneManager.LoadScene("User");
             StopUsing();
         }
