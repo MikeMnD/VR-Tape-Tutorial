@@ -79,21 +79,15 @@ public class MoveHandler : MonoBehaviour {
                 Debug.Log("cur = " + cur);
 
                 // fix current position
-                GameObject handler = GameObject.Find("Handler1");
-                if(cur == 1)
-                    handler = GameObject.Find("Handler2");
-                if(cur == 2)
-                    handler = GameObject.Find("Handler3");
-                if(cur == 3)
-                    handler = GameObject.Find("Handler4");
+                GameObject handler = getCurHandler();
 
                 if(cur <= 3) {
                     handler.transform.SetParent(hint[cur].transform);
                     handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                    if(cur != 3)
+                        handler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));  
+                    handler.GetComponent<ObiParticleHandle>().enabled = true;                
                 }
-
-                if(cur != 0)
-                    handler.GetComponent<ObiParticleHandle>().enabled = true;
 
                 // move on to next position
                 leftController = GameObject.Find("left_hand"); 
@@ -132,8 +126,7 @@ public class MoveHandler : MonoBehaviour {
 
                 pinConstraints.AddToSolver(null);
 
-                // stickBtn.StopUsing();
-                // hint[cur].SetActive(false);
+
                 hint[cur].GetComponent<MeshRenderer>().enabled = false;
                 hint[cur].transform.GetChild(0).gameObject.SetActive(false);
 
@@ -146,23 +139,13 @@ public class MoveHandler : MonoBehaviour {
                 }
 
                 if(cur == 3) {
+
+                    rightHandler = GameObject.Find("right_hand");
                     rightController = VRTK_DeviceFinder.GetControllerRightHand();
 
-                    GameObject tmp = GameObject.Find("Handler4");
-                    tmp.GetComponent<ObiParticleHandle>().enabled = true;
-                    tmp.transform.SetParent(rightController.transform);
- 
-                    
-                    GameObject rightHand = GameObject.Find("right_hand");
-                    rightHand.GetComponent<Rigidbody>().useGravity = false;
-                    VRTK_InteractableObject obj = rightHand.GetComponent<VRTK_InteractableObject>();
-                    // obj.StopUsing();
-                    // obj.isUsable = false;
-                    obj.enabled = false;
-
-                    rightHand.transform.SetParent(rightController.transform);               
-                    rightHand.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                    rightHand.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));    
+                    rightHandler.transform.SetParent(rightController.transform);               
+                    rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                    rightHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
                 }
 
             }
@@ -170,25 +153,10 @@ public class MoveHandler : MonoBehaviour {
     }
     
 
-    int getClosestParticle(Vector3[] particlePos)
-    {
-        int bestIndex = -1;
-        float closestDistanceSqr = Mathf.Infinity;
-        Vector3 curPos = rightHandler.transform.position;
-        for(int i = 0; i < particlePos.Length; ++i)
-        {
-            Vector3 directionToTarget = particlePos[i] - curPos;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrToTarget < closestDistanceSqr)
-            {
-                closestDistanceSqr = dSqrToTarget;
-                bestIndex = i;
-            }
-        }
-
-        return bestIndex;
+    public GameObject getCurHandler() {
+        return GameObject.Find("Handler" + (cur+1));
     }
-
+    
     public void printInfo() {
         // get the pin constraint information
         ObiCloth obiCloth = GameObject.Find("clothPart").GetComponent<ObiCloth>();

@@ -25,12 +25,16 @@ public class ObiInHand : MonoBehaviour
         // check if show scissor and not setup and cut
         if (StaticData.getIsCut() && StaticData.getShowScissor() && !tapeAttachLeftHand)
         {
-            obiTape.transform.position = this.transform.position;
             obiTape.SetActive(true);
+            Transform cloth = GameObject.Find("/TapeController/clothPart").transform;
+            obiTape.transform.position = this.transform.position - new Vector3(0.0f, cloth.lossyScale.y/2, 0.0f);
+            Debug.Log("scale: " + obiTape.transform.lossyScale.y);
             
             // set up position
             GameObject leftHandler = GameObject.Find("/TapeController/clothPart/left_hand");
             leftHandler.transform.SetParent(this.transform);
+
+            Debug.Log(this.name);
             leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             leftHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
 
@@ -40,15 +44,21 @@ public class ObiInHand : MonoBehaviour
 
         if (tapeAttachLeftHand && !tapeAttachBothHands)
         {
+
+            // let tape moves followed left hand
+            GameObject leftController = VRTK_DeviceFinder.GetControllerLeftHand();
+            Transform cloth = GameObject.Find("/TapeController/clothPart").transform;
+            obiTape.transform.position = this.transform.position - new Vector3(0.0f, cloth.localScale.y/2, 0.0f);
+
             GameObject rightController = VRTK_DeviceFinder.GetControllerRightHand();
             GameObject rightHandler = GameObject.Find("/TapeController/clothPart/right_hand");
-
+            
             // touch and grab the right side of the tape
-            // if (rightHandler != null && rightHandler.GetComponent<VRTK_InteractableObject>().IsGrabbed())
-            if (rightHandler != null && rightController.GetComponent<VRTK_InteractGrab>().IsGrabButtonPressed())
+            if (rightHandler != null && rightHandler.GetComponent<VRTK_InteractableObject>().IsUsing())
             {
-                rightHandler.transform.SetParent(rightController.transform);
+                rightHandler.transform.SetParent(GameObject.Find("RightController").transform);
                 rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                rightHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
                 tapeAttachBothHands = true;
             }
         }
