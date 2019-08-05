@@ -14,6 +14,9 @@ public class StaticData : MonoBehaviour {
     private static bool isCut = false;
     private static bool showScissor = false;
     private static int targetNum;
+    private static bool tapeAttachLeftHand = false;
+    private static bool tapeAttachBothHands = false;
+
 
     public static void setTargetTapeLength (string btn_name)
     {
@@ -87,6 +90,8 @@ public class StaticData : MonoBehaviour {
     public static void resetAll() {
         showScissor = false;
         isCut = false;
+        tapeAttachLeftHand = false;
+        tapeAttachBothHands = false;
     }
     public static bool getShowScissor()
     {
@@ -96,6 +101,22 @@ public class StaticData : MonoBehaviour {
     public static bool getIsCut()
     {
         return isCut;
+    }
+
+    public static void setTapeAttachLeftHand(bool value) {
+        tapeAttachLeftHand = value;
+    }
+
+    public static void setTapeAttachBothHands(bool value) {
+        tapeAttachBothHands = value;
+    }
+
+    public static bool isTapeAttachLeftHand() {
+        return tapeAttachLeftHand;
+    }
+
+    public static bool isTapeAttachBothHands() {
+        return tapeAttachBothHands;
     }
 
     private void Awake()

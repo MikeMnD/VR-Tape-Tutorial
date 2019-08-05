@@ -8,8 +8,6 @@ public class ObiInHand : MonoBehaviour
 {
     private GameObject obiTape;
     private GameObject rightHandler;
-    private bool tapeAttachLeftHand = false;
-    private bool tapeAttachBothHands = false;
 
     // Use this for initialization
     void Start()
@@ -23,27 +21,36 @@ public class ObiInHand : MonoBehaviour
     void Update()
     {
 
-        // check if show scissor and not setup and cut
-        if (StaticData.getIsCut() && StaticData.getShowScissor() && !tapeAttachLeftHand)
+        // check if cut tape is not attached to the left hand
+        if (StaticData.getIsCut() && StaticData.getShowScissor() && !StaticData.isTapeAttachLeftHand())
         {
             obiTape.SetActive(true);
             Transform cloth = GameObject.Find("/TapeController/clothPart").transform;
             obiTape.transform.position = this.transform.position - new Vector3(0.0f, cloth.lossyScale.y/2, 0.0f);
-            Debug.Log("scale: " + obiTape.transform.lossyScale.y);
+            // Debug.Log("scale: " + obiTape.transform.lossyScale.y);
             
             // set up position
             GameObject leftHandler = GameObject.Find("/TapeController/clothPart/left_hand");
-            leftHandler.transform.SetParent(this.transform);
 
-            Debug.Log(this.name);
+            GameObject leftController = GameObject.Find("[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController");
+            leftHandler.transform.SetParent(leftController.transform);
             leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             leftHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
 
-            tapeAttachLeftHand = true;
+            // set up left hand animation
+            string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/VRTK_BasicHand/LeftHand";
+            // string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/LeftHand";
+            Animator animator = GameObject.Find(path).GetComponent<Animator>();
+            if(!animator.GetBool("grabObiCloth")){
+                Debug.Log("set left hand");
+                animator.SetBool("grabObiCloth", true);
+            }
+        
+            StaticData.setTapeAttachLeftHand(true);
         }
 
 
-        if (tapeAttachLeftHand && !tapeAttachBothHands)
+        if(StaticData.isTapeAttachLeftHand() && !StaticData.isTapeAttachBothHands())
         {
 
             // let tape moves followed left hand
@@ -60,7 +67,7 @@ public class ObiInHand : MonoBehaviour
                 rightHandler.transform.SetParent(GameObject.Find("RightController").transform);
                 rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
                 rightHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
-                tapeAttachBothHands = true;
+                StaticData.setTapeAttachBothHands(true);
             }
         }
     }

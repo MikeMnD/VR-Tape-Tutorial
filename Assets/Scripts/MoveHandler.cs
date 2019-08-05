@@ -61,7 +61,14 @@ public class MoveHandler : MonoBehaviour
     {
         // printInfo();
 
-        if (cur < hint.Length)
+        // after attach to both hands, show the first hint
+        if(StaticData.isTapeAttachBothHands() && cur == 0) {
+            GameObject.Find("ecum").SetActive(true);
+            hint[cur].GetComponent<MeshRenderer>().enabled = true;
+            hint[cur].transform.GetChild(0).gameObject.SetActive(true);
+        }
+
+        if (StaticData.isTapeAttachBothHands() && cur < hint.Length)
         {
             VRTK_InteractableObject stickBtn = hint[cur].GetComponent<VRTK_InteractableObject>();
 
@@ -71,14 +78,14 @@ public class MoveHandler : MonoBehaviour
                 // fix current position
                 GameObject handler = getCurHandler();
 
-                if (cur <= 3)
-                {
-                    handler.transform.SetParent(hint[cur].transform);
-                    handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                    if (cur != 3)
-                        handler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
-                    handler.GetComponent<ObiParticleHandle>().enabled = true;
+
+                handler.transform.SetParent(hint[cur].transform);
+                handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                if (cur != hint.Length -1 ) {
+                    handler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
                 }
+                handler.GetComponent<ObiParticleHandle>().enabled = true;
+
 
                 // move on to next position
                 leftController = GameObject.Find("left_hand");
@@ -92,11 +99,11 @@ public class MoveHandler : MonoBehaviour
 
 
                 // remove previous position constraints first
-                if (cur == 0)
-                {
+                // if (cur == 0)
+                // {
                     // do nothing
                     // no constraint at the left hand side
-                }
+                // }
                 if (cur == 1)
                 {
                     pinConstraintBatch.RemoveConstraint(3);
@@ -122,7 +129,7 @@ public class MoveHandler : MonoBehaviour
 
                 pinConstraints.AddToSolver(null);
 
-                // turn on hint
+                // turn off hint
                 hint[cur].GetComponent<MeshRenderer>().enabled = false;
                 hint[cur].transform.GetChild(0).gameObject.SetActive(false);
 
@@ -137,6 +144,14 @@ public class MoveHandler : MonoBehaviour
                 // Last step: use right hand to attach
                 if (cur == hint.Length - 1)
                 {
+                    // set lefthand gesture unhold
+                    string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/VRTK_BasicHand/LeftHand";
+                    // string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/LeftHand";
+                    Animator animator = GameObject.Find(path).GetComponent<Animator>();
+                    if(animator.GetBool("grabObiCloth")){
+                        Debug.Log("reset left hand");
+                        animator.SetBool("grabObiCloth", false);
+                    }
 
                     rightHandler = GameObject.Find("right_hand");
                     rightController = VRTK_DeviceFinder.GetControllerRightHand();
@@ -148,13 +163,14 @@ public class MoveHandler : MonoBehaviour
 
             }
         }
-        else
+        else if(StaticData.isTapeAttachBothHands() && cur >= hint.Length)
         {  // finish all steps
-            Debug.Log("finish taping");
-
+            
+            // count 5 secs to reload main scene
             timeRemaining -= Time.deltaTime;
             if (timeRemaining <= 0)
             {
+                Debug.Log("finish taping");
                 SceneManager.LoadScene("testMain");
             }
         }

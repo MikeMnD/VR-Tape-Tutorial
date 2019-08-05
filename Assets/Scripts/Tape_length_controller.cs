@@ -21,13 +21,14 @@ public class Tape_length_controller : MonoBehaviour {
     // Use this for initialization
     void Start () {
         lineRederer.positionCount = 2;      // start and end
-        Debug.Log(target_tape_length);
+        // Debug.Log(target_tape_length);
             
         GameObject grabbed = GameObject.Find("grabbedBtn");
         init_pos = grabbed.transform.localPosition;
 
         // set up scissor
         scissor = (GameObject)Resources.Load("scissors");
+        // scissor = (GameObject)Resources.Load("scissors(Clone)");
         scissor = Instantiate(scissor) as GameObject;
 
         // set up the local position
@@ -46,21 +47,23 @@ public class Tape_length_controller : MonoBehaviour {
         start_point.transform.localRotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
 
         VRTK_InteractableObject tape = GetComponent<VRTK_InteractableObject>();
-        if(tape.IsGrabbed())
+        // if(tape.IsGrabbed())
+        if(tape.IsUsing())
         {
-            Vector3 vector_x = new Vector3(-0.01f, 0.0f, 0.0f);
+            string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/VRTK_BasicHand/GrabAttachPoint";
+            // string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/GrabAttachPoint";
+            start_point.position = GameObject.Find(path).transform.position;
+
+            Vector3 vector_x = transform.right * -1;
             Vector3 current_vector = start_point.position - end_point.position;
             float angle = Vector3.Angle(vector_x, current_vector);
-            if(angle > 50.0f)
+            if(angle > 30.0f)
             {  
                 Debug.Log("angle is out of range");
                 tape.ForceStopInteracting();
 
                 GameObject grabbed = GameObject.Find("grabbedBtn");
-                grabbed.transform.SetParent(tape_roll.transform);
-                grabbed.transform.localPosition = new Vector3(-1.0f/0.2f, 0.0f, 0.0f); 
-                // x/0.2 because of the scale !!
-
+                grabbed.transform.localPosition = init_pos;
             }
         }
 
