@@ -155,7 +155,7 @@ public class MoveHandler : MonoBehaviour
             timeRemaining -= Time.deltaTime;
             if (timeRemaining <= 0)
             {
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene("testMain");
             }
         }
     }
