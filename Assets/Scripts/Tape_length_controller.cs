@@ -18,6 +18,17 @@ public class Tape_length_controller : MonoBehaviour {
         return Vector3.Distance(start_point.position, end_point.position); 
     }
 
+    public string GetGameObjectPath(GameObject obj)
+    {
+        string path = "/" + obj.name;
+        while (obj.transform.parent != null)
+        {
+            obj = obj.transform.parent.gameObject;
+            path = "/" + obj.name + path;
+        }
+        return path;
+    }
+
     // Use this for initialization
     void Start () {
         lineRederer.positionCount = 2;      // start and end
@@ -42,6 +53,11 @@ public class Tape_length_controller : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
+        GameObject tape_model = GameObject.Find("tape_model");
+        if(tape_model.GetComponent<VRTK_InteractableObject>().IsGrabbed()) {
+            tape_model.transform.localPosition = new Vector3(0.0f, -0.03535533f, 0.03535534f);
+            tape_model.transform.localRotation = Quaternion.Euler(-45.0f, 0.0f, 0.0f);
+        }
 
         // let the grabbed point be vertical to tape
         start_point.transform.localRotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
