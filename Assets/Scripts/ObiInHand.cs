@@ -34,17 +34,11 @@ public class ObiInHand : MonoBehaviour
 
             GameObject leftController = GameObject.Find("[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController");
             leftHandler.transform.SetParent(leftController.transform);
-            leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            leftHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.1f);
             leftHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
 
             // set up left hand animation
-            string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/VRTK_BasicHand/LeftHand";
-            // string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/LeftHand";
-            Animator animator = GameObject.Find(path).GetComponent<Animator>();
-            if(!animator.GetBool("grabObiCloth")){
-                Debug.Log("set left hand");
-                animator.SetBool("grabObiCloth", true);
-            }
+            setHandHolded("[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/VRTK_BasicHand/LeftHand");
         
             StaticData.setTapeAttachLeftHand(true);
         }
@@ -56,7 +50,7 @@ public class ObiInHand : MonoBehaviour
             // let tape moves followed left hand
             GameObject leftController = VRTK_DeviceFinder.GetControllerLeftHand();
             Transform cloth = GameObject.Find("/TapeController/clothPart").transform;
-            obiTape.transform.position = this.transform.position - new Vector3(0.0f, cloth.localScale.y/2, 0.0f);
+            obiTape.transform.position = this.transform.position - new Vector3(0.0f, cloth.lossyScale.y* 0.3f, 0.0f);
 
             GameObject rightController = VRTK_DeviceFinder.GetControllerRightHand();
             GameObject rightHandler = GameObject.Find("/TapeController/clothPart/right_hand");
@@ -65,10 +59,26 @@ public class ObiInHand : MonoBehaviour
             if (rightHandler != null && rightHandler.GetComponent<VRTK_InteractableObject>().IsUsing())
             {
                 rightHandler.transform.SetParent(GameObject.Find("RightController").transform);
-                rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.1f);
                 rightHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
+
+                // hide the rectangular prism
+                rightHandler.GetComponent<MeshRenderer>().enabled = false;
+
+                // set up right hand animation
+                setHandHolded("[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (right)/RightController/VRTK_BasicHand/RightHand");
+               
+
                 StaticData.setTapeAttachBothHands(true);
             }
+        }
+    }
+
+    public void setHandHolded(string path) {
+        Animator animator = GameObject.Find(path).GetComponent<Animator>();
+        if(!animator.GetBool("grabObiCloth")){
+            Debug.Log("set right hand");
+            animator.SetBool("grabObiCloth", true);
         }
     }
 }

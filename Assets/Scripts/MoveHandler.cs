@@ -63,7 +63,13 @@ public class MoveHandler : MonoBehaviour
 
         // after attach to both hands, show the first hint
         if(StaticData.isTapeAttachBothHands() && cur == 0) {
-            GameObject.Find("ecum").SetActive(true);
+
+            // TODO: modify to handle different model
+            
+            // turn on the hint of trail renderer
+            GameObject.Find("ecum").transform.GetChild(0).gameObject.SetActive(true);
+            
+            // turn on step buttons
             hint[cur].GetComponent<MeshRenderer>().enabled = true;
             hint[cur].transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -129,12 +135,13 @@ public class MoveHandler : MonoBehaviour
 
                 pinConstraints.AddToSolver(null);
 
-                // turn off hint
+                // turn off the current hint
                 hint[cur].GetComponent<MeshRenderer>().enabled = false;
                 hint[cur].transform.GetChild(0).gameObject.SetActive(false);
 
                 ++cur;
 
+                // turn on the next hint
                 if (cur < hint.Length)
                 {
                     hint[cur].GetComponent<MeshRenderer>().enabled = true;
@@ -145,20 +152,10 @@ public class MoveHandler : MonoBehaviour
                 if (cur == hint.Length - 1)
                 {
                     // set lefthand gesture unhold
-                    string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/VRTK_BasicHand/LeftHand";
-                    // string path = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/LeftHand";
-                    Animator animator = GameObject.Find(path).GetComponent<Animator>();
-                    if(animator.GetBool("grabObiCloth")){
-                        Debug.Log("reset left hand");
-                        animator.SetBool("grabObiCloth", false);
-                    }
+                    setHandUnhold("[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/LeftController/VRTK_BasicHand/LeftHand");
 
                     rightHandler = GameObject.Find("right_hand");
                     rightController = VRTK_DeviceFinder.GetControllerRightHand();
-
-                    rightHandler.transform.SetParent(rightController.transform);
-                    rightHandler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                    rightHandler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
                 }
 
             }
@@ -166,6 +163,9 @@ public class MoveHandler : MonoBehaviour
         else if(StaticData.isTapeAttachBothHands() && cur >= hint.Length)
         {  // finish all steps
             
+            // set rightHand gesture unhold
+            setHandUnhold("[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (right)/RightController/VRTK_BasicHand/RightHand");
+
             // count 5 secs to reload main scene
             timeRemaining -= Time.deltaTime;
             if (timeRemaining <= 0)
@@ -176,6 +176,13 @@ public class MoveHandler : MonoBehaviour
         }
     }
 
+    public void setHandUnhold(string path) {
+        Animator animator = GameObject.Find(path).GetComponent<Animator>();
+        if(animator.GetBool("grabObiCloth")){
+            Debug.Log("reset right hand");
+            animator.SetBool("grabObiCloth", false);
+        }
+    }
 
     public GameObject getCurHandler()
     {
