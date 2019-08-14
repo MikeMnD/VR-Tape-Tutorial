@@ -61,6 +61,14 @@ public class MoveHandler : MonoBehaviour
         stickPos[2] = GameObject.Find("StickPos_3");
         stickPos[3] = GameObject.Find("StickPos_4");
 
+        foreach (var item in hint)
+        {
+            ParticleSystem particleSystem = item.GetComponent<ParticleSystem>();
+            if(!particleSystem.isStopped) {
+                particleSystem.Stop();
+            }    
+        }
+
         Debug.Log(hint.Length);
     }
 
@@ -79,12 +87,35 @@ public class MoveHandler : MonoBehaviour
             
             // turn on step buttons
             hint[cur].GetComponent<MeshRenderer>().enabled = true;
+            ParticleSystem particleSystem = hint[cur].GetComponent<ParticleSystem>();
+            if(!particleSystem.isPlaying) {
+                particleSystem.Play();
+            }
             hint[cur].transform.GetChild(0).gameObject.SetActive(true);
         }
 
         if (StaticData.isTapeAttachBothHands() && cur < hint.Length)
         {
             VRTK_InteractableObject stickBtn = hint[cur].GetComponent<VRTK_InteractableObject>();
+            if(stickBtn.IsTouched())
+            {
+                ParticleSystem particleSystem = hint[cur].GetComponent<ParticleSystem>();
+                if(!particleSystem.isStopped) {
+                    particleSystem.Stop();
+                }
+                MeshRenderer color = stickBtn.GetComponent<MeshRenderer>();
+                color.material = Resources.Load("grabBtn") as Material;
+            }
+            else
+            {   
+                ParticleSystem particleSystem = hint[cur].GetComponent<ParticleSystem>();
+                if(!particleSystem.isPlaying) {
+                    particleSystem.Play();
+                }
+                MeshRenderer color = stickBtn.GetComponent<MeshRenderer>();
+                color.material = Resources.Load("orange") as Material;
+
+            }
 
             if (stickBtn != null && stickBtn.IsUsing())
             {
@@ -145,6 +176,10 @@ public class MoveHandler : MonoBehaviour
 
                 // turn off the current hint
                 hint[cur].GetComponent<MeshRenderer>().enabled = false;
+                ParticleSystem ps = hint[cur].GetComponent<ParticleSystem>();
+                if(!ps.isStopped) {
+                    ps.Stop();
+                }
                 hint[cur].transform.GetChild(0).gameObject.SetActive(false);
 
                 ++cur;
@@ -153,6 +188,10 @@ public class MoveHandler : MonoBehaviour
                 if (cur < hint.Length)
                 {
                     hint[cur].GetComponent<MeshRenderer>().enabled = true;
+                    ParticleSystem particleSystem = hint[cur].GetComponent<ParticleSystem>();
+                    if(!particleSystem.isPlaying) {
+                        particleSystem.Play();
+                    }
                     hint[cur].transform.GetChild(0).gameObject.SetActive(true);
                 }
 
