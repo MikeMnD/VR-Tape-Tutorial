@@ -18,6 +18,7 @@ public class MoveHandler : MonoBehaviour
     private int[] leftAttachNode = { 39, 40, 81, 82 };
     private int[] curIndices = { 8, 0 };        // the bottom particle
     private GameObject[] hint;
+    private GameObject[] stickPos = new GameObject[4];
     private int cur = 0;                                // record the current hint
 
     private float timeRemaining = 5.0f;
@@ -54,6 +55,13 @@ public class MoveHandler : MonoBehaviour
 
         hint = GameObject.FindGameObjectsWithTag("Hint");
         Debug.Log(hint.Length);
+
+        stickPos[0] = GameObject.Find("StickPos_1");
+        stickPos[1] = GameObject.Find("StickPos_2");
+        stickPos[2] = GameObject.Find("StickPos_3");
+        stickPos[3] = GameObject.Find("StickPos_4");
+
+        Debug.Log(hint.Length);
     }
 
     // Update is called once per frame
@@ -85,7 +93,7 @@ public class MoveHandler : MonoBehaviour
                 GameObject handler = getCurHandler();
 
 
-                handler.transform.SetParent(hint[cur].transform);
+                handler.transform.SetParent(stickPos[cur].transform);
                 handler.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
                 if (cur != hint.Length -1 ) {
                     handler.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, 0.0f));
