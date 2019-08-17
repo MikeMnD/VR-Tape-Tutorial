@@ -34,6 +34,9 @@
         protected override void Update()
         {
             base.Update();
+
+            // always enable pointer
+            Toggle(true);
         }
     }
 }

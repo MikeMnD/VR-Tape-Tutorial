@@ -17215,7 +17215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &546179146
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30292,6 +30292,10 @@ Prefab:
       propertyPath: baseHapticStrength
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 128202, guid: d5fe2f7f9d3e98a478d151422643620c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5fe2f7f9d3e98a478d151422643620c, type: 2}
   m_IsPrefabParent: 0
@@ -30779,7 +30783,7 @@ GameObject:
   - component: {fileID: 1207250871}
   - component: {fileID: 1207250870}
   m_Layer: 0
-  m_Name: Menu
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30796,6 +30800,7 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 546179146}
+  - {fileID: 1594532953}
   m_Father: {fileID: 269072380}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46577,6 +46582,73 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1556994898}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1594532952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1594532953}
+  - component: {fileID: 1594532955}
+  - component: {fileID: 1594532954}
+  m_Layer: 0
+  m_Name: InstructionSign
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1594532953
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1594532952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1207250869}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1594532954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1594532952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 2800000, guid: 83981dd96e9dfb04db38e54ab2148058, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1594532955
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1594532952}
 --- !u!1 &1602347667
 GameObject:
   m_ObjectHideFlags: 0
@@ -56775,11 +56847,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1859505462}
-  - component: {fileID: 1859505467}
   - component: {fileID: 1859505466}
   - component: {fileID: 1859505465}
   - component: {fileID: 1859505464}
   - component: {fileID: 1859505463}
+  - component: {fileID: 1859505467}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -56915,14 +56987,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1859505461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
+  m_Script: {fileID: 11500000, guid: d2d6533a319c4744697fb89bff937f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enableTeleport: 1
   targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 1859505466}
-  activationButton: 9
-  holdButtonToActivate: 0
+  activationButton: 0
+  holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
   selectionButton: 3
@@ -58108,6 +58180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2012212047}
   - component: {fileID: 2012212048}
+  - component: {fileID: 2012212049}
   m_Layer: 0
   m_Name: PlayArea
   m_TagString: Untagged
@@ -58146,6 +58219,17 @@ MonoBehaviour:
   targetListPolicy: {fileID: 0}
   navMeshData: {fileID: 0}
   navMeshLimitDistance: 0
+--- !u!114 &2012212049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2012212046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8aaef49d1dcd97408e3caf7dfe30d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2020478122
 Prefab:
   m_ObjectHideFlags: 0
@@ -58599,7 +58683,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2083650608}
   - component: {fileID: 2083650607}
-  - component: {fileID: 2083650606}
   - component: {fileID: 2083650605}
   - component: {fileID: 2083650604}
   - component: {fileID: 2083650603}
@@ -58718,35 +58801,6 @@ MonoBehaviour:
   maximumCursorScale: {x: Infinity, y: Infinity, z: Infinity}
   customTracer: {fileID: 0}
   customCursor: {fileID: 0}
---- !u!114 &2083650606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2083650601}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableTeleport: 1
-  targetListPolicy: {fileID: 0}
-  pointerRenderer: {fileID: 2083650605}
-  activationButton: 9
-  holdButtonToActivate: 0
-  activateOnEnable: 0
-  activationDelay: 0
-  selectionButton: 3
-  selectOnPress: 0
-  selectionDelay: 0
-  selectAfterHoverDuration: 0
-  interactWithObjects: 0
-  grabToPointerTip: 0
-  attachedTo: {fileID: 0}
-  controllerEvents: {fileID: 0}
-  interactUse: {fileID: 0}
-  customOrigin: {fileID: 0}
-  controller: {fileID: 0}
 --- !u!114 &2083650607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58761,11 +58815,11 @@ MonoBehaviour:
   enableTeleport: 1
   targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 2083650605}
-  activationButton: 9
+  activationButton: 0
   holdButtonToActivate: 0
-  activateOnEnable: 0
+  activateOnEnable: 1
   activationDelay: 0
-  selectionButton: 10
+  selectionButton: 3
   selectOnPress: 0
   selectionDelay: 0
   selectAfterHoverDuration: 0
