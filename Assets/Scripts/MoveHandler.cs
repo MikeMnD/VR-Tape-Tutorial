@@ -54,7 +54,6 @@ public class MoveHandler : MonoBehaviour
         rightCollider = rightHandler.GetComponent<ObiCollider>();
 
         hint = GameObject.FindGameObjectsWithTag("Hint");
-        Debug.Log(hint.Length);
 
         stickPos[0] = GameObject.Find("StickPos_1");
         stickPos[1] = GameObject.Find("StickPos_2");
@@ -69,7 +68,7 @@ public class MoveHandler : MonoBehaviour
             }    
         }
 
-        Debug.Log(hint.Length);
+        Debug.Log("current part: " + StaticData.getTargetNum());
     }
 
     // Update is called once per frame
@@ -83,7 +82,8 @@ public class MoveHandler : MonoBehaviour
             // TODO: modify to handle different model
             
             // turn on the hint of trail renderer
-            GameObject.Find("ecum").transform.GetChild(0).gameObject.SetActive(true);
+            string modelName = StaticData.getTargetNumName(); 
+            GameObject.Find(modelName).transform.GetChild(0).gameObject.SetActive(true);
             
             // turn on step buttons
             hint[cur].GetComponent<MeshRenderer>().enabled = true;

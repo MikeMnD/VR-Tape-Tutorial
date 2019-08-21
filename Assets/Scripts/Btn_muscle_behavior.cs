@@ -15,7 +15,7 @@
             /* change scene */
             //SceneManager.LoadScene(this.name);
             StaticData.resetAll();
-            SceneManager.LoadScene("testHand");
+            SceneManager.LoadScene(StaticData.getTargetNumName());
             StopUsing();
         }
 

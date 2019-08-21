@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/testMain.unity
     guid: 4257804158c8beb4c96772e7fb2ee0d2
   - enabled: 1
-    path: Assets/testHand.unity
+    path: Assets/ecum.unity
     guid: d880e674c70862c47b7c473192207bd9
+  - enabled: 0
+    path: Assets/Animation.unity
+    guid: 1fa8bb91fe4159f45b014da0d24076bd
+  - enabled: 1
+    path: Assets/fcum.unity
+    guid: 03acab40bdbe9e54e8d64c7a5ca49b9e
   m_configObjects: {}

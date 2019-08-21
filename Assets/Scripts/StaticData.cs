@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class StaticData : MonoBehaviour {
     private enum BodyPartNum {
-            test,
+            // test,
             ecum, fcum, tri, tam, del,
             back, quad, pat, gas, ham
+    };
+
+    private static string[] bodyPartName = { 
+        "ecum", "fcum", "tri", "tam", "del",
+        "back", "quad", "pat", "gas", "ham"
     };
     // initial distance == 0.08 (simulator)
     private static double[] LengthArray = { 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.30 };
@@ -21,6 +26,8 @@ public class StaticData : MonoBehaviour {
     public static void setTargetTapeLength (string btn_name)
     {
         BodyPartNum parsed_enum = (BodyPartNum) System.Enum.Parse(typeof(BodyPartNum),  btn_name);
+        
+        // set up the targetNum
         targetNum = (int)parsed_enum;
 
         // set up target tape length
@@ -35,6 +42,12 @@ public class StaticData : MonoBehaviour {
     public static int getTargetNum()
     {
         return targetNum;
+    }
+
+    public static string getTargetNumName()
+    {
+        // Debug.Log(bodyPartName[targetNum]);
+        return bodyPartName[targetNum];
     }
 
     public static double getTargetTapeLength ()
