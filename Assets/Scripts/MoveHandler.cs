@@ -183,6 +183,7 @@ public class MoveHandler : MonoBehaviour
                 hint[cur].transform.GetChild(0).gameObject.SetActive(false);
 
                 ++cur;
+                StaticData.setCurTapingStep(cur);
 
                 // turn on the next hint
                 if (cur < hint.Length)

@@ -13,9 +13,9 @@
             StaticData.setTargetTapeLength(this.name.ToLower());
             Debug.Log("go to next scene");
             /* change scene */
-            //SceneManager.LoadScene(this.name);
             StaticData.resetAll();
-            SceneManager.LoadScene(StaticData.getTargetNumName());
+            SceneManager.LoadScene("ecum 1");
+            // SceneManager.LoadScene(StaticData.getTargetNumName());
             StopUsing();
         }
 

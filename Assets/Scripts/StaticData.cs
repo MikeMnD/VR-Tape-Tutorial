@@ -19,6 +19,8 @@ public class StaticData : MonoBehaviour {
     private static bool isCut = false;
     private static bool showScissor = false;
     private static int targetNum;
+
+    private static int curTapingStep = 0;
     private static bool tapeAttachLeftHand = false;
     private static bool tapeAttachBothHands = false;
 
@@ -37,6 +39,15 @@ public class StaticData : MonoBehaviour {
         // set up target animation model
         
         
+    }
+
+    public static void setCurTapingStep(int step) {
+        curTapingStep = step;
+        Debug.Log("current step: " + curTapingStep);
+    }
+
+    public static int getCurTapingStep() {
+        return curTapingStep;
     }
 
     public static int getTargetNum()
@@ -105,6 +116,7 @@ public class StaticData : MonoBehaviour {
         isCut = false;
         tapeAttachLeftHand = false;
         tapeAttachBothHands = false;
+        curTapingStep = 0;
     }
     public static bool getShowScissor()
     {
