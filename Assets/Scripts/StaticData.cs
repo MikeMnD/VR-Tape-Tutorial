@@ -34,8 +34,12 @@ public class StaticData : MonoBehaviour {
             if(string.Equals(status, "on")) {
                 m[0] = Resources.Load("activeBtn") as Material;
             }
-            else {  // off
-                m[0] = new Material(Shader.Find("Standard"));
+            else {  // off                
+                string p = objPath.Substring(0, objPath.LastIndexOf("/")) + "/body";
+                MeshRenderer viveMeshRenderer = GameObject.Find(p).GetComponent<MeshRenderer>();
+
+                Material[] original = viveMeshRenderer.materials;
+                m[0] = original[0];
             }
             meshRenderer.materials = m;
         }
