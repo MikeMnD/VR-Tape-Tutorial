@@ -9,17 +9,107 @@ public class ObiInHand : MonoBehaviour
     private GameObject obiTape;
     private GameObject rightHandler;
 
+    private VRTK_ControllerHighlighter leftHighlighter;
+	private VRTK_ControllerHighlighter rightHighlighter;
+
+
     // Use this for initialization
     void Start()
     {
         obiTape = GameObject.Find("TapeController");
         obiTape.SetActive(false);
 
+        string leftPath = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/Model";
+        leftHighlighter = GameObject.Find(leftPath).GetComponent<VRTK_ControllerHighlighter>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        // set up left controller highlight
+        if (!StaticData.getShowScissor()) {
+            string leftPath = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/Model";
+
+            // if(leftHighlighter == null) {
+			    // leftHighlighter = GameObject.Find(leftPath).GetComponent<VRTK_ControllerHighlighter>();
+            // }
+
+            // set up left highlighter
+            // leftHighlighter.HighlightElement(SDK_BaseController.ControllerElements.GripLeft, Color.yellow, 0.0f);
+            // leftHighlighter.HighlightElement(SDK_BaseController.ControllerElements.GripRight, Color.yellow, 0.0f);            
+            // leftHighlighter.highlightGrip = Color.yellow;
+            
+            // draw grip button to yellow
+            StaticData.setActiveBtn(leftPath + "/lgrip", "on");
+            StaticData.setActiveBtn(leftPath + "/rgrip", "on");
+            // GameObject drawLeftGrip = GameObject.Find(leftPath + "/lgrip");
+            // GameObject drawRightGrip = GameObject.Find(leftPath + "/rgrip");
+
+            // if(drawLeftGrip.GetComponent<MeshRenderer>() != null) {
+            //     MeshRenderer leftGrip = drawLeftGrip.GetComponent<MeshRenderer>();
+            //     Material[] m = leftGrip.materials;
+            //     m[0] = Resources.Load("activeBtn") as Material;
+            //     leftGrip.materials = m;
+            // }
+
+            // if(drawRightGrip.GetComponent<MeshRenderer>() != null) {
+            //     MeshRenderer rightGrip = drawRightGrip.GetComponent<MeshRenderer>();
+            //     Material[] m = rightGrip.materials;
+            //     m[0] = Resources.Load("activeBtn") as Material;
+            //     rightGrip.materials = m;
+            // }
+
+            VRTK_ObjectAppearance.SetOpacity(GameObject.Find(leftPath), 0.8f);
+        }
+        if(StaticData.getShowScissor() && !StaticData.isTapeAttachLeftHand()) {
+            string leftPath = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (left)/Model";
+            string rightPath = "[VRTK_SDKManager]/SDKSetups/SteamVR/[CameraRig]/Controller (right)/Model";
+
+            if(rightHighlighter == null) {
+			    rightHighlighter = GameObject.Find(rightPath).GetComponent<VRTK_ControllerHighlighter>();
+            }
+
+            // clear left controller hint
+            // leftHighlighter.UnhighlightController();
+
+            // leftHighlighter.highlightGrip = Color.clear;
+
+            // clear grip button color
+            StaticData.setActiveBtn(leftPath + "/lgrip", "off");
+            StaticData.setActiveBtn(leftPath + "/rgrip", "off");
+
+            // GameObject drawLeftGrip = GameObject.Find(leftPath + "/lgrip");
+            // GameObject drawRightGrip = GameObject.Find(leftPath + "/rgrip");
+
+            // if(drawLeftGrip.GetComponent<MeshRenderer>() != null) {
+            //     MeshRenderer leftGrip = drawLeftGrip.GetComponent<MeshRenderer>();
+            //     Material[] m = leftGrip.materials;
+            //     m[0] = Resources.Load("Standard") as Material;
+            //     leftGrip.materials = m;
+            // }
+
+            // if(drawRightGrip.GetComponent<MeshRenderer>() != null) {
+            //     MeshRenderer rightGrip = drawRightGrip.GetComponent<MeshRenderer>();
+            //     Material[] m = rightGrip.materials;
+            //     m[0] = Resources.Load("Standard") as Material;
+            //     rightGrip.materials = m;
+            // }
+
+            VRTK_ObjectAppearance.SetOpacity(GameObject.Find(leftPath), 1.0f);
+
+            // set up right controller hint
+            // rightHighlighter.HighlightElement(SDK_BaseController.ControllerElements.Trigger, Color.yellow, 0.0f);
+            
+            // rightHighlighter.highlightTrigger = Color.yellow;
+            
+            // draw right trigger yellow
+            StaticData.setActiveBtn(rightPath + "/trigger", "on");
+
+            VRTK_ObjectAppearance.SetOpacity(GameObject.Find(rightPath), 0.8f);
+        }
+
 
         // check if cut tape is not attached to the left hand
         if (StaticData.getIsCut() && StaticData.getShowScissor() && !StaticData.isTapeAttachLeftHand())

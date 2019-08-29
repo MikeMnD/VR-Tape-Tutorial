@@ -24,6 +24,22 @@ public class StaticData : MonoBehaviour {
     private static bool tapeAttachLeftHand = false;
     private static bool tapeAttachBothHands = false;
 
+    public static void setActiveBtn(string objPath, string status) 
+    {
+        GameObject drawObj = GameObject.Find(objPath);
+
+        if(drawObj.GetComponent<MeshRenderer>() != null) {
+            MeshRenderer meshRenderer = drawObj.GetComponent<MeshRenderer>();
+            Material[] m = meshRenderer.materials;
+            if(string.Equals(status, "on")) {
+                m[0] = Resources.Load("activeBtn") as Material;
+            }
+            else {  // off
+                m[0] = new Material(Shader.Find("Standard"));
+            }
+            meshRenderer.materials = m;
+        }
+    }
 
     public static void setTargetTapeLength (string btn_name)
     {

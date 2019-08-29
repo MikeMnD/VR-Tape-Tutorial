@@ -14,8 +14,8 @@
             Debug.Log("go to next scene");
             /* change scene */
             StaticData.resetAll();
-            SceneManager.LoadScene("ecum 1");
-            // SceneManager.LoadScene(StaticData.getTargetNumName());
+            // SceneManager.LoadScene("ecum 1");
+            SceneManager.LoadScene(StaticData.getTargetNumName());
             StopUsing();
         }
 
