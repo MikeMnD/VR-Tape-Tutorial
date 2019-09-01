@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StaticData : MonoBehaviour {
     private enum BodyPartNum {
@@ -8,6 +9,8 @@ public class StaticData : MonoBehaviour {
             ecum, fcum, tri, tam, del,
             back, quad, pat, gas, ham
     };
+
+    private static AudioSource bgm;
 
     private static string[] bodyPartName = { 
         "ecum", "fcum", "tri", "tam", "del",
@@ -23,6 +26,8 @@ public class StaticData : MonoBehaviour {
     private static int curTapingStep = 0;
     private static bool tapeAttachLeftHand = false;
     private static bool tapeAttachBothHands = false;
+
+    static StaticData instance;
 
     public static void setActiveBtn(string objPath, string status) 
     {
@@ -166,7 +171,19 @@ public class StaticData : MonoBehaviour {
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (this != instance)
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+            Debug.Log("Remove new static data");
+            Destroy(gameObject);
+        }     
     }
 
 }
