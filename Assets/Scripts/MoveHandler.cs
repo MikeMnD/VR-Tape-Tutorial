@@ -43,6 +43,8 @@ public class MoveHandler : MonoBehaviour
 	private VRTK_ControllerHighlighter leftHighlighter;
 	private VRTK_ControllerHighlighter rightHighlighter;
 
+    private bool[] audioHint = new bool[4];
+
     // Use this for initialization
     void Start()
     {
@@ -61,6 +63,11 @@ public class MoveHandler : MonoBehaviour
         rightCollider = rightHandler.GetComponent<ObiCollider>();
 
         hint = GameObject.FindGameObjectsWithTag("Hint");
+
+        audioHint[0] = false;
+        audioHint[1] = false;
+        audioHint[2] = false;
+        audioHint[3] = false;
 
         stickPos[0] = GameObject.Find("StickPos_1");
         stickPos[1] = GameObject.Find("StickPos_2");
@@ -106,7 +113,15 @@ public class MoveHandler : MonoBehaviour
             if(!particleSystem.isPlaying) {
                 particleSystem.Play();
             }
+
+            // turn on tooltips
             hint[cur].transform.GetChild(0).gameObject.SetActive(true);
+
+            // turn on audio hint
+            if(!audioHint[cur]) {
+                hint[cur].GetComponent<AudioSource>().Play(0);
+                audioHint[cur] = true;
+            }
 
             // set up highlighter
             setControllerHighlight(CurState.leftStep);
@@ -224,7 +239,16 @@ public class MoveHandler : MonoBehaviour
                     if(!particleSystem.isPlaying) {
                         particleSystem.Play();
                     }
+
+                    // turn on tooltip
                     hint[cur].transform.GetChild(0).gameObject.SetActive(true);
+
+                    // turn on audio hint
+                    if(!audioHint[cur]) {
+                        hint[cur].GetComponent<AudioSource>().Play(0);
+                        audioHint[cur] = true;            
+                    }
+
                 }
 
                 // Last step: use right hand to attach
