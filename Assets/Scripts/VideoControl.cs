@@ -11,6 +11,8 @@ public class VideoControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		videoPlayer = this.GetComponent<VideoPlayer>();
+		StaticData.setVideo();
+		videoPlayer.Play();
 	}
 	
 	// Update is called once per frame

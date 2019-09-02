@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class StaticData : MonoBehaviour {
     private enum BodyPartNum {
@@ -50,6 +51,14 @@ public class StaticData : MonoBehaviour {
         }
     }
 
+    public static void setVideo() {
+        string videoFile = getTargetNumName() + "_video.mp4";
+        VideoPlayer player = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
+        // player.clip = "Assets/Video/" + videoFile;
+        // player.source = VideoSource.VideoClip;
+        // player.clip = 
+        player.url = "D:/Project/projectTest/TapeTutorial_hand/Assets/Video/" + videoFile;
+    }
     public static void setTargetTapeLength (string btn_name)
     {
         BodyPartNum parsed_enum = (BodyPartNum) System.Enum.Parse(typeof(BodyPartNum),  btn_name);
